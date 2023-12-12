@@ -3,9 +3,9 @@
 # Configurações do MongoDB
 DB_NAME="Campus" 
 MONGO_HOST="vsgate-s1.dei.isep.ipp.pt"
-MONGO_PORT="11147"
-MONGO_USER="mongoadmin"
-MONGO_PASSWORD="105711abb1e672194c53cbe4"
+MONGO_PORT="++++++++"
+MONGO_USER="++++++++++"
+MONGO_PASSWORD="+++++++++++++++++"
 MONGO_DB="$DB_NAME"
 BACKUP_PATH="/srv/MongoDB/Backup" 
 DATE=$(date +"%Y-%m-%d-%H%M")
