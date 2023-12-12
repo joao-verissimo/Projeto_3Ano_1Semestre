@@ -1,0 +1,108 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_FloorService" as FEsrvc
+participant ":FE_BuildingService" as FEBsrvc
+participant ":Routing" as route
+participant ":FloorController" as ctrl
+participant ":FloorService" as srvc
+participant ":FloorRepo" as repo
+participant ":BuildingRepo" as repoT
+participant ":FloorMap" as rtMap
+participant ":FloorSchema" as rtSchema
+
+activate admin
+
+admin -> sys: wants to introduce a floor
+activate sys
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate comp
+
+sys -> comp : getBuilding()
+activate FEBsrvc
+comp -> FEBsrvc : getBuildings()
+activate route
+FEBsrvc -> route: GET route{}
+activate ctrl
+route -> ctrl: findAll()
+activate srvc
+ctrl -> srvc: findAll()
+activate repoT
+srvc -> repoT: findAll()
+deactivate FEBsrvc
+deactivate route
+deactivate ctrl
+deactivate srvc
+deactivate repoT
+
+
+sys -> comp : getFloors()
+activate FEsrvc
+comp -> FEsrvc : listFloors()
+activate route
+FEsrvc -> route: GET route{}
+activate ctrl
+route -> ctrl: listAllFloors()
+activate srvc
+ctrl -> srvc: findAll()
+activate repo
+srvc -> repo: findAll()
+deactivate FEsrvc
+deactivate route
+deactivate ctrl
+deactivate srvc
+deactivate repo
+
+sys -> comp : editFloor()
+activate FEsrvc
+comp -> FEsrvc : editFloor(floor)
+activate route
+FEsrvc -> route: POST route{json}
+activate ctrl
+route -> ctrl: updateFloor(json)
+activate srvc
+ctrl -> srvc: updateFloor(IFloorDTO)
+activate repo
+srvc -> repo: findById(floor.id)
+loop all passages
+    srvc -> repo: findById(floor.passages.id)
+end
+srvc -> repo: save(floor)
+activate rtMap
+repo -> rtMap: toPersistance(floor)
+activate rtSchema
+repo -> rtSchema: create(floor)
+deactivate rtSchema
+deactivate rtMap
+
+alt saved with success
+    repo --> srvc: floor
+    srvc --> ctrl: floor
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    repo --> srvc: Error
+    repo --> srvc: Error
+    ctrl --> route : HTTP: 400
+    route --> FEsrvc: HTTP: 400
+    FEsrvc --> comp: HTTP: 400
+    comp --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate admin
+@enduml

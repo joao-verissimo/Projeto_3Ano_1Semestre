@@ -1,0 +1,48 @@
+<head>
+  <link rel="stylesheet" href="create-room.component.css">
+</head>
+
+<section class="main-content">
+    <div class="container">
+        <div class="table-section">
+            <table>
+                <tr>
+                    <th><label>Floor:</label></th>
+                    <td>
+                        <select [(ngModel)]="room.floor">
+                            <option *ngFor="let floor of floors" [ngValue]="floor._id">{{ floor.name }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label>Room Name:</label></th>
+                    <td><input [(ngModel)]="room.name" placeholder="Room Name" required></td>
+                </tr>
+                <tr>
+                    <th><label>Category:</label></th>
+                    <td>
+                        <select [(ngModel)]="room.category">
+                            <option *ngFor="let category of roomCategories" [ngValue]="category">{{ category }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label>Room Description:</label></th>
+                    <td><input [(ngModel)]="room.description" placeholder="Room Description" required></td>
+                </tr>
+                <tr>
+                    <th><label>Room Length:</label></th>
+                    <td><input [(ngModel)]="room.dimension[0]" placeholder="Room Dimension" required></td>
+                </tr>
+                <tr>
+                    <th><label>Room Width:</label></th>
+                    <td><input [(ngModel)]="room.dimension[1]" placeholder="Room Dimension" required></td>
+                </tr>
+            </table>
+        </div>
+        <div class="button-section">
+            <button class="buttonBack" (click)="goBack()">Back</button>
+            <button (click)="createRoom()">Create</button>
+        </div>
+      </div>
+</section>

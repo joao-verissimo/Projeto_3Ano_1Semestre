@@ -1,0 +1,43 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":FrontEnd" as sys
+participant ":Routing" as route
+participant ":FloorController" as ctrl
+participant ":FloorService" as srvc
+participant ":FloorRepo" as repo
+
+
+activate admin
+
+admin -> sys: create a Route
+activate sys
+
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate route
+sys -> route: PUT route{id, floorMap}
+activate ctrl
+route -> ctrl: patchFloorMap(request, result, next)
+activate srvc
+ctrl -> srvc: patchFloorMap(IFloorDTO)
+activate repo
+srvc -> repo: findByID(floorID)
+srvc -> repo: save(floorDTO)
+deactivate repo
+srvc --> ctrl: result
+
+alt successful case
+    ctrl --> route : HTTP: 201
+    route --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    ctrl --> route : HTTP: 400
+    route --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+deactivate floor
+deactivate sys
+@enduml

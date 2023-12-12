@@ -1,0 +1,100 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_RoomService" as FEsrvc
+participant ":FE_FloorService" as FFEsrvc
+participant ":Routing" as route
+participant ":RoomController" as ctrl
+participant ":FloorController" as Fctrl
+participant ":FloorService" as Fsrvc
+participant ":RoomService" as srvc
+participant ":FloorRepo" as Frepo
+participant ":RoomRepo" as repo
+participant ":RoomMap" as rtMap
+participant ":RoomSchema" as rtSchema
+participant ":Room" as r
+
+activate admin
+
+admin -> sys: add a room
+activate sys
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate comp
+
+sys -> comp : getFloors()
+activate FFEsrvc
+comp -> FFEsrvc : listFloors()
+activate route
+FFEsrvc -> route: GET route{}
+deactivate FFEsrvc
+activate Fctrl
+route -> Fctrl: listAllFloors()
+deactivate route
+activate Fsrvc
+Fctrl -> Fsrvc: findAll()
+deactivate Fctrl
+activate Frepo
+Fsrvc -> Frepo: findAll()
+deactivate Fsrvc
+deactivate Frepo
+
+sys -> comp : createRoom()
+activate FEsrvc
+comp -> FEsrvc : createRoom(room)
+activate route
+FEsrvc -> route: POST route{json}
+activate ctrl
+route -> ctrl: createRoom(json)
+activate srvc
+ctrl -> srvc: createRoom(IRoomDTO)
+activate r
+srvc -> r: create()
+deactivate r
+activate Frepo
+srvc -> Frepo: findById(floor.id)
+deactivate Frepo
+activate repo
+srvc -> repo: save(floor)
+activate rtSchema
+repo -> rtSchema: find(room.floor.id)
+deactivate rtSchema
+loop All Rooms Same Floor
+    repo -> repo: doRoomsOverlap(Room, Room)
+end
+alt no overlap
+    repo -> rtMap: toPersistance(Room)
+    activate rtMap
+    deactivate rtMap
+    repo -> rtSchema: create(Room)
+    activate rtSchema
+    repo --> srvc: Room
+    deactivate rtSchema
+    srvc --> ctrl: Room
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    repo --> srvc: Error(Room overlaps with existing rooms.)
+    srvc --> ctrl: Error(Room overlaps with existing rooms.)
+    ctrl --> route : HTTP: 400
+    route --> FEsrvc: HTTP: 400
+    FEsrvc --> comp: HTTP: 400
+    comp --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate admin
+@enduml

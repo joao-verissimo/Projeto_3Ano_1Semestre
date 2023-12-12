@@ -1,0 +1,28 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":System" as sys
+participant ":API Patch floor map" as floor
+
+activate admin
+
+admin -> sys: update floor map
+activate sys
+
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate floor
+sys -> floor: PATCH route{id, floorMap}
+
+alt successful case
+    floor --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    floor --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+deactivate floor
+deactivate sys
+@enduml

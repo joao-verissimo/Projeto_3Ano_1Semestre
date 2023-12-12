@@ -1,0 +1,13 @@
+@startuml
+actor "User" as user
+participant ":FrontEnd" as frontend
+participant ":BuildingsController" as controller
+database ":BuildingService" as service
+
+user -> frontend: Request to findAll()
+frontend -> controller: findAll()
+controller -> service: findAll()
+service --> controller: List of Building Names
+controller --> frontend: List of Building Names
+frontend --> user: List of Building Names
+@enduml

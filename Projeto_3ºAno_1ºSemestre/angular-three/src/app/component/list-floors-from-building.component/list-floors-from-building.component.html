@@ -1,0 +1,37 @@
+<head>
+  <link rel="stylesheet" href="list-floors-from-building.component.css">
+</head>
+
+<div class="container">
+  <div class="table-section">
+      <table>
+          <tr>
+              <th><label>Building:</label></th>
+              <th>
+                  <select [(ngModel)]="selectedBuildingId">
+                      <option *ngFor="let building of buildings" [ngValue]="building._id">{{ building.name }}</option>
+                  </select>
+                  <button (click)="listFloorsFromBuilding()">List Floors</button>
+              </th>
+          </tr>
+      </table>
+  </div>
+
+  <div *ngIf="Floors.length > 0" class="floor-list">
+      <ul>
+          <li *ngFor="let floor of Floors" class="floor-item">
+              <strong>Floor name:</strong> {{ floor.name }}
+              <div class="floor-details">
+                  <strong>Description:</strong> {{ floor.description }} <br>
+                  <strong>Hall:</strong> {{ floor.hall }} <br>
+                  <!-- do not forget in passages to add floor name and building name -->
+                  <strong>Pssages:</strong> {{ floor.passages }} <br>
+              </div>
+          </li>
+      </ul>
+  </div>
+
+  <div *ngIf="Floors.length === 0" class="no-floors">
+      <p>No floors found for this building.</p>
+  </div>
+</div>

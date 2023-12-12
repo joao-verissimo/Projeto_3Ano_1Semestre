@@ -1,0 +1,52 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":FrontEnd" as sys
+participant ":Routing" as route
+participant ":RobotController" as ctrl
+participant ":RobotService" as srvc
+participant ":RobotTypeRepo" as repo
+participant ":RobotTypeMap" as rtMap
+participant ":RobotTypeSchema" as rtSchema
+
+activate admin
+
+admin -> sys: create a Route
+activate sys
+
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate route
+sys -> route: POST route{id, designation, brand, model, task}
+activate ctrl
+route -> ctrl: createRobotType(request, result, next)
+activate srvc
+ctrl -> srvc: createRobotType(IRobotTypeDTO)
+activate repo
+srvc -> repo: findByDesignation(designation)
+activate rtSchema
+repo -> rtSchema: findOne(designation)
+srvc -> repo: save(robotType)
+repo -> rtSchema: findOne(id) 
+activate rtMap
+repo -> rtMap: toPersistance(robotType)
+repo -> rtSchema: create(robotType)
+repo --> srvc: robotType
+deactivate rtSchema
+deactivate rtMap
+deactivate repo
+srvc --> ctrl: result
+
+alt successful case
+    ctrl --> route : HTTP: 201
+    route --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    ctrl --> route : HTTP: 400
+    route --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+deactivate sys
+@enduml

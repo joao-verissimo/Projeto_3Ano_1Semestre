@@ -1,0 +1,38 @@
+<head>
+  <link rel="stylesheet" href="create-robot-type.component.css">
+</head>
+
+<section class="main-content">
+    <div class="container">
+        <div class="table-section">
+            <table>
+                <tr>
+                    <th><label>Designation:</label></th>
+                    <td><input [(ngModel)]="robotType.designation" placeholder="Robot Designation"></td>
+                </tr>
+                <tr>
+                    <th><label>Brand:</label></th>
+                    <td><input [(ngModel)]="robotType.brand" placeholder="Robot Brand"></td>
+                </tr>
+                <tr>
+                    <th><label>Robot Model:</label></th>
+                    <td><input [(ngModel)]="robotType.modelRobot" placeholder="Robot Model"></td>
+                </tr>
+                <tr>
+                    <th><label>Task:</label></th>
+                    <td>
+                        <select [(ngModel)]="robotType.task">
+                            <option value="0">Vigilance</option>
+                            <option value="1">PickUp and Delivery</option>
+                            <option value="2">Vigilance, PickUp and Delivery</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="button-section">
+            <button class="buttonBack" (click)="goBack()">Back</button>
+            <button (click)="createRobotType()">Create</button>
+        </div>
+      </div>      
+</section>

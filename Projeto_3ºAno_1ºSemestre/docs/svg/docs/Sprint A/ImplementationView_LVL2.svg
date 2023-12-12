@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="576px" preserveAspectRatio="none" style="width:479px;height:576px;" version="1.1" viewBox="0 0 479 576" width="479px" zoomAndPan="magnify"><defs><filter height="300%" id="f18vo2mjofw0fm" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[9ddaf8ee8bcae11a9a9232f969198262]
+cluster Infrastructure--><polygon fill="#FFFFFF" filter="url(#f18vo2mjofw0fm)" points="90,32,206,32,213,54.2969,368,54.2969,368,135,90,135,90,32" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="90" x2="213" y1="54.2969" y2="54.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="110" x="94" y="46.9951">Infrastructure</text><!--MD5=[1a79add8e979d124e6f695a10b210dad]
+cluster InterfaceAdapters--><polygon fill="#FFFFFF" filter="url(#f18vo2mjofw0fm)" points="87,175,236,175,243,197.2969,392,197.2969,392,278,87,278,87,175" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="87" x2="243" y1="197.2969" y2="197.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="143" x="91" y="189.9951">InterfaceAdapters</text><!--MD5=[87a28688a54fdf50801fb3ebc4a46d57]
+cluster ApplicationServices--><polygon fill="#FFFFFF" filter="url(#f18vo2mjofw0fm)" points="88,318,249,318,256,340.2969,261,340.2969,261,421,88,421,88,318" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="88" x2="256" y1="340.2969" y2="340.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="155" x="92" y="332.9951">ApplicationServices</text><!--MD5=[121a8bf1197281ab89ed693fab589f94]
+cluster Domain--><polygon fill="#FFFFFF" filter="url(#f18vo2mjofw0fm)" points="30,461,94,461,101,483.2969,457,483.2969,457,564,30,564,30,461" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="30" x2="101" y1="483.2969" y2="483.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="58" x="34" y="475.9951">Domain</text><!--MD5=[7a980fe5388f2c0b48dbfb0a8ec1f254]
+entity Routing--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="74" x="270" y="75"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="265" y="80"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="265" y="101.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="280" y="97.9951">Routing</text><!--MD5=[6d90bd632e1dbd4e1012d34a6301881d]
+entity Persistance--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="101" x="133.5" y="75"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="128.5" y="80"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="128.5" y="101.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="81" x="143.5" y="97.9951">Persistance</text><!--MD5=[1b9dce2ce56fb0e0072eca4d439af425]
+entity Controllers--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="95" x="272.5" y="218"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="267.5" y="223"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="267.5" y="244.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="75" x="282.5" y="240.9951">Controllers</text><!--MD5=[ca90e29f08732e1f8975e741fe954bc8]
+entity Repositories--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="107" x="130.5" y="218"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="125.5" y="223"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="125.5" y="244.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="87" x="140.5" y="240.9951">Repositories</text><!--MD5=[8143bb6655ee3f2bac3d6b04ab84062e]
+entity AppServices--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="105" x="131.5" y="361"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="126.5" y="366"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="126.5" y="387.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="141.5" y="383.9951">AppServices</text><!--MD5=[2926a3d40dfbaae06bdd43e1c6b0088b]
+entity Aggregates--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="100" x="333" y="504"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="328" y="509"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="328" y="530.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="80" x="343" y="526.9951">Aggregates</text><!--MD5=[d4431bf3c75bf55908c281f839c556ae]
+entity ValueObjects--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="111" x="186.5" y="504"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="181.5" y="509"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="181.5" y="530.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="91" x="196.5" y="526.9951">ValueObjects</text><!--MD5=[3ab6bc66408bc465e62c4c0dcccb802d]
+entity Services--><rect fill="#FEFECE" filter="url(#f18vo2mjofw0fm)" height="36.2969" style="stroke: #A80036; stroke-width: 1.5;" width="78" x="73" y="504"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="68" y="509"/><rect fill="#FEFECE" height="5" style="stroke: #A80036; stroke-width: 1.5;" width="10" x="68" y="530.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="58" x="83" y="526.9951">Services</text><!--MD5=[9513a3cc453ebabd7c766bb35f7e4625]
+link Infrastructure to InterfaceAdapters--><path d="M97.1144,135.6787 C97.1092,135.9247 97.1039,136.1712 97.0986,136.4183 C97.0776,137.4065 97.0564,138.4036 97.035,139.4085 C96.8638,147.4476 96.6819,155.9872 96.5,164.5263 C96.4545,166.661 96.4091,168.7957 96.3638,170.9226 C96.3411,171.986 96.3185,173.0475 96.296,174.106 C96.2903,174.3707 96.2847,174.6351 96.2791,174.8994 " fill="none" id="Infrastructure-&gt;InterfaceAdapters" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="96.2791,174.8994,100.4698,165.9866,96.3855,169.9005,92.4716,165.8162,96.2791,174.8994" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[d9d96432c93992c7e4f16478a98cc4d2]
+link Persistance to Repositories--><path d="M184,111.01 C184,136.52 184,184.71 184,212.91 " fill="none" id="Persistance-&gt;Repositories" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="184,217.93,188,208.93,184,212.93,180,208.93,184,217.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[782d2a30ca4c09b64886b780ad62411e]
+link Repositories to AppServices--><path d="M184,254.01 C184,279.52 184,327.71 184,355.91 " fill="none" id="Repositories-&gt;AppServices" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="184,360.93,188,351.93,184,355.93,180,351.93,184,360.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[5e732af6b7eae0e184cf8205a2324263]
+link Routing to Controllers--><path d="M308.57,111.01 C310.92,136.52 315.36,184.71 317.96,212.91 " fill="none" id="Routing-&gt;Controllers" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="318.43,217.93,321.5915,208.6024,317.9735,212.9509,313.6249,209.3328,318.43,217.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[041312c57a680f8319b6e351b2f0e389]
+link Controllers to AppServices--><path d="M303.6,254.01 C278.58,279.94 230.96,329.31 203.97,357.3 " fill="none" id="Controllers-&gt;AppServices" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="200.46,360.93,209.5866,357.2279,203.9307,357.3308,203.8278,351.6749,200.46,360.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8ae8c2fc7f4712b624819409281d813e]
+link InterfaceAdapters to ApplicationServices--><path d="M95.2952,278.6787 C95.2969,278.9247 95.2987,279.1712 95.3005,279.4183 C95.3075,280.4065 95.3145,281.4036 95.3217,282.4085 C95.3788,290.4476 95.4394,298.9872 95.5,307.5263 C95.5152,309.661 95.5303,311.7957 95.5454,313.9226 C95.553,314.986 95.5605,316.0475 95.568,317.106 C95.5699,317.3707 95.5718,317.6351 95.5736,317.8994 " fill="none" id="InterfaceAdapters-&gt;ApplicationServices" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="95.5736,317.8994,99.5096,308.8712,95.5381,312.8995,91.5098,308.928,95.5736,317.8994" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[cafe62ee2dcfd1ce7937069c4595721c]
+link ApplicationServices to Domain--><path d="M87.972,391.0459 C87.9208,391.1192 87.8694,391.1927 87.8179,391.2665 C87.7148,391.4141 87.6111,391.5629 87.5066,391.7129 C87.0888,392.3129 86.6603,392.9317 86.222,393.5684 C84.4688,396.1148 82.5603,398.9462 80.5663,401.9975 C72.59,414.2025 63.245,429.925 57,445 C55.3863,448.895 53.8847,452.9611 52.4918,457.0997 C52.1436,458.1344 51.8022,459.1736 51.4675,460.2158 C51.3838,460.4763 51.3006,460.737 51.2177,460.9979 " fill="none" id="ApplicationServices-&gt;Domain" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="51.2177,460.9979,57.7536,453.6303,52.7307,456.2323,50.1286,451.2095,51.2177,460.9979" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[159efa18973dceb578460409bee86a93]
+link AppServices to Aggregates--><path d="M228.58,397.08 C255.11,408.43 288.64,424.93 315,445 C335.65,460.72 354.94,483.35 367.67,499.83 " fill="none" id="AppServices-&gt;Aggregates" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="370.76,503.88,368.4614,494.3031,367.719,499.911,362.1111,499.1687,370.76,503.88" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[ac685190a2f1d5de97630eeedacf9c0f]
+link AppServices to ValueObjects--><path d="M191,397.01 C201.53,422.63 221.48,471.11 233.06,499.26 " fill="none" id="AppServices-&gt;ValueObjects" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="234.98,503.93,235.2627,494.0852,233.0813,499.3045,227.8619,497.1232,234.98,503.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[1393ca4ffc150e603712918082cca2ad]
+link AppServices to Services--><path d="M175.32,397.01 C162.23,422.63 137.48,471.11 123.1,499.26 " fill="none" id="AppServices-&gt;Services" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="120.72,503.93,128.3704,497.7274,122.9903,499.4751,121.2426,494.095,120.72,503.93" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[aecdd798bbd147f015de6aece7615f11]
+@startuml
+
+package "Infrastructure" {
+    [Routing]
+    [Persistance]
+}
+
+package "InterfaceAdapters" {
+    [Controllers]
+    [Repositories]
+}
+
+package "ApplicationServices" {
+    [AppServices]
+}
+
+package "Domain" {
+    [Aggregates]
+    [ValueObjects]
+    [Services]
+}
+
+Infrastructure - -> InterfaceAdapters
+Persistance - -> Repositories
+Repositories - -> AppServices
+Routing - -> Controllers
+Controllers - -> AppServices
+
+InterfaceAdapters - -> ApplicationServices
+ApplicationServices - -> Domain
+AppServices - -> Aggregates
+AppServices - -> ValueObjects
+AppServices - -> Services
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.21+9
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

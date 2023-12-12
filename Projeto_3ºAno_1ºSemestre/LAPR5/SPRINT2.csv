@@ -1,0 +1,49 @@
+﻿Sprint;Módulo;ID;correspondência entre US de Sprint A e Sprint B;U.S./Req.;Observations;ALGAV;ARQSI;ASIST;SGRAI;LAPR5;1;2;3;4;5;controlo
+B;Gestão de Campus;1050;160;Como gestor de Campus pretendo criar um Edifício indicando [...];POST;O;X;;O;O;X;;;X;X;3
+B;Gestão de Campus;1070;160;Como gestor de Campus pretendo editar a informação (total ou parcial) de Edifício;PUT|PATCH;;X;;;;X;;;;;1
+B;Gestão de Campus;1060;170;Como gestor de Campus pretendo listar Edifícios;GET;;X;;;;X;;;;;1
+B;Gestão de Campus;1080;180;Como gestor de Campus pretendo listar Edifícios com min e max de pisos;GET;;X;;;;;X;;;;1
+B;Gestão de Campus;1090;190;Como gestor de Campus pretendo criar um Piso indicando [...];POST;O;X;;O;O;X;X;;;X;3
+B;Gestão de Campus;1110;200;Como gestor de Campus pretendo editar a informação (total ou parcial) de Piso;PUT|PATCH;;X;;;;;X;;;;1
+B;Gestão de Campus;1100;210;Como gestor de Campus pretendo listar todos os Pisos de um Edifício;GET;;X;;;;;X;;;;1
+B;Gestão de Campus;1200;220;Como gestor de Campus pretendo listar Pisos de Edifício com Passagem para outros Edifícios;GET;;X;;;;;;X;;;1
+B;Gestão de Campus;1120;230;Como gestor de Campus pretendo carregar mapa de Piso de Edifício;PUT|PATCH;;X;;;;X;;;;;1
+B;Gestão de Campus;1170;240;Como gestor de Campus pretendo criar uma Passagem entre 2 Edifícios;POST;O;X;;O;O;X;X;X;;;3
+B;Gestão de Campus;1180;250;Como gestor de Campus pretendo editar uma Passagem entre 2 Edifícios;PUT|PATCH;;X;;;;;;X;;;1
+B;Gestão de Campus;1190;260;Como gestor de Campus pretendo listar Passagens entre 2 Edifícios;GET;;X;;;;;;X;X;;2
+B;Administração de Sistemas ;640;;Como administrador do sistema quero que o deployment de um dos módulos do RFP numa VM do DEI seja sistemático, validando de forma agendada com o plano de testes;;O;O;X;O;O;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Administração de Sistemas ;650;;Como administrador do sistema quero que apenas os clientes da rede interna do DEI (cablada ou via VPN) possam aceder à solução;;;;X;;;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Administração de Sistemas ;660;;Como administrador do sistema quero que os clientes indicados na user story anterior possam ser definidos pela simples alteração de um ficheiro de texto;;;;X;;;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Administração de Sistemas ;670;; Como administrador quero identificar e quantificar os riscos envolvidos na solução preconizada;;;;X;;;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Administração de Sistemas ;800;;Como administrador do sistema quero que seja definido o MBCO (Minimum Business Continuity Objective) a propor aos stakeholders;;;;X;;;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Administração de Sistemas ;810;;Como administrador do sistema quero que seja proposta, justificada e implementada uma estratégia de cópia de segurança que minimize o RPO (Recovery Point Objective) e o WRT (Work Recovery Time);;;;X;;;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Administração de Sistemas ;820;;Como administrador do sistema quero definir uma pasta pública para todos os utilizadores registados no sistema;;;;X;;;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Administração de Sistemas ;830;;Como administrador do sistema quero obter os utilizadores com mais do que 3 acessos incorretos;;;;X;;;QQ 2 req;QQ 2 req;QQ 2 req;QQ 2 req;---;5
+B;Gestão de Campus;1130;270;Como gestor de Campus pretendo criar um Elevador num Edifício indicando os Pisos que serve;POST;O;X;;O;O;;X;X;X;;3
+B;Gestão de Campus;1150;280;Como gestor de Campus pretendo editar Elevador em Edifício;PATCH;;X;;;;;;;X;;1
+B;Gestão de Campus;1140;290;Como gestor de Campus  pretendo listar Elevadores em Edifício;GET;;X;;;;;;;X;;1
+B;Gestão de Campus;1160;300;Como gestor de Campus pretendo listar Pisos de Edifício servidos por Elevador;GET;;X;;;;;;;;X;1
+B;Gestão de Campus;1210;310;Como gestor de Campus pretendo criar uma Sala num Piso de Edifício indicando [...];POST;;X;;;;;;X;X;X;3
+B; Gestão de Frota;1000;350;Como gestor de Frota pretendo adicionar um novo tipo de robot indicando a sua designação e que tipos de tarefas pode executar da lista prédefinida de tarefas;POST;;X;;;;X;X;;X;;3
+B; Gestão de Frota;1010;360;Como gestor de Frota pretendo adicionar um novo robot à frota indicando o seu tipo, designação, etc.;POST;O;X;;O;O;;X;X;;;2
+B; Gestão de Frota;1020;370;Como gestor de Frota pretendo inibir um robot;PUT|PATCH;O;X;;O;O;X;;X;;;2
+B; Gestão de Frota;1030;380;Como gestor de Frota pretendo consultar todos os robots da frota;GET;;X;;;;;;;X;X;2
+B; Gestão de Frota;1040;390;Como gestor de Frota pretendo pesquisar todos os robots da frota por designação ou tarefa que pode executar;GET;;X;;;;;;;;X;1
+B;Gestão de Campus;130;;Como administrador do sistema pretendo fazer upload do mapa do campus considerando edifícios e ligações interiores entre os mesmos para ser utilizado pelos robots;;O;X;;O;;;;;;;0
+B;Gestão de Tarefas;1220;;Como gestor de Tarefas pretendo obter os caminhos entre dois edificos considerando um critério de otimização;Listagem do resultado do módulo de planeamento. Não contempla persistência desse resultado;O;X;;;O;;;;X;X;2
+B;Gestão de Utilizadores   ;90;; Como cliente do projeto pretendo um relatório que, descrevendo a solução encontrada e considerando as normas do RGPD, identifique concretamente os dados pessoais utilizados, o tratamento a que serão sujeitos, bem como a finalidade e fundamento daquele tratamento e, ainda, o responsável pelo tratamento.    ;;;;;;X;X;X;X;X;X;5
+B;Infraestrutura;610;;Pipeline de build contínuo para um módulo de serviços;;;X;;;;;;;;;0
+B;Infraestrutura;620;;Deployment automático de um dos módulos via pipeline num ambiente cloud;;;X;;;;;;;;;0
+B;Infraestrutura;630;;Deployment de BD num ambiente cloud ou na Cloud do DEI;;;X;O;;;;;;;;0
+B;integração;535;;Como utilizador pretendo um menu que me permita aceder às funcionalidades de cada módulo;;O;O;O;O;X;X;X;X;X;X;5
+B;integração;700;;como arquiteto da solução pretendo que a informação sobre robots seja partilhada entre os módulos de Administração de dados, Pleaneamento e visualização;;O;O;;O;X;X;X;X;X;X;5
+B;integração;710;;como arquiteto da solução pretendo que a informação sobre edificios, pisos, passagens, elevadores e mapas seja partilhada entre os módulos de Administração de dados, Pleaneamento e visualização;;O;O;;O;X;X;X;X;X;X;5
+B;integração;730;;como arquiteto da solução pretendo que a informação sobre percursos entre edificios seja partilhada entre os módulos de Planeamento, SPA e Visualização;;O;O;;O;X;X;X;X;X;X;5
+B;Planeamento de Tarefas;510;;Como gestor de tarefas pretendo encontrar caminhos entre edifícios que tentem otimizar um dado critério, por exemplo, minimizar o número de utilizações do elevador, ou passar pelo menor número de edifícios. Os caminhos dentro de cada corredor dos edifícios deverão tentar minimizar a distância percorrida e ser gerados a partir de um grafo entre “células” retangulares posicionadas no corredor, devendo sempre haver uma célula junto a cada acesso a gabinete ou sala  ;;X;O;;;O;X;X;X;;;3
+B;Planeamento de Tarefas;515;;Análise da complexidade da pesquisa em grafos obtidos a partir das ligações entre células retangulares de posicionamento dos robots;;X;;;;;;;;X;X;2
+B;Visualização 3D;601;;O formato base do mapa que descreve a planta de um piso de um edifício do campus (um ficheiro/piso/edifício) deve ser complementado com informação do módulo de gestão de campus: dimensão do piso, disposição das paredes, localização das portas das salas/gabinetes, dos acessos e dos elevadores, etc.;Deverão basear-se no ficheiro JSON do projecto “Thumb Raiser” de SGRAI;;O;;X;X;X;X;X;X;X;5
+B / C;Visualização 3D;606;;Permitir a navegação interactiva (com o recurso ao teclado) do robot pelos diversos pisos dos diversos edifícios do campus.;Deverão inspirar-se no projecto “Thumb Raiser” de SGRAI (o robot deverá poder andar e correr);;O;;X;O;Sprint C;Sprint C;X;X;X;5
+B;Visualização 3D;602;;O formato base do mapa que descreve a planta de um piso de um edifício do campus (um ficheiro/piso/edifício) deve definir, além da grelha matricial, a identificação dos ficheiros contendo as texturas adequadas às paredes dos diversos pisos, bem como os modelos 3D representativos das portas e dos elevadores.;Deverão basear-se no ficheiro JSON do projecto “Thumb Raiser” de SGRAI;;;;X;;X;X;X;X;X;5
+B;Visualização 3D;603;;Permitir a visualização em 3D do interior dos pisos dos edifícios do campus (um piso de cada vez): chão, paredes, portas e elevadores.;Deverão basear-se no projecto “Thumb Raiser” de SGRAI (múltiplas vistas, orbit, zoom in/out, dolly in/out, iluminação, etc.);;;;X;;X;X;X;X;X;5
+B / C;Visualização 3D;604;;Criar uma interface com o utilizador (GUI) que permita seleccionar o edifício e o piso que se pretende ver em cada momento.;;;;;X;;Sprint C;X;X;X;X;5
+B / C;Visualização 3D;605;;Importar o modelo 3D de um robot e permitir a sua visualização numa dada localização do piso seleccionado.;Deverão inspirar-se no projecto “Thumb Raiser” de SGRAI;;;;X;;Sprint C;Sprint C;X;X;X;5

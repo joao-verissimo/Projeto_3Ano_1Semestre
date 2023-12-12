@@ -1,0 +1,50 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant "IRobotService" as FEsrvc
+participant ":Routing" as route
+participant "IRobotController" as ctrl
+participant "IRobotService" as srvc
+participant "IRobotRepo" as repo
+
+activate admin
+
+admin -> sys: wants to change robot state
+activate sys
+sys --> admin: request robot ID
+admin -> sys: provides robot ID
+activate comp
+
+sys -> comp: changeRobotState(robotID)
+activate FEsrvc
+comp -> FEsrvc: changeState(robotID)
+activate route
+FEsrvc -> route: PUT route{robotID}
+activate ctrl
+route -> ctrl: changeState(robotID)
+activate srvc
+ctrl -> srvc: changeRobotState(robotID)
+activate repo
+srvc -> repo: findById(robotID)
+repo -> srvc: robotDetails
+srvc -> repo: updateState(robot)
+repo -> srvc: stateChanged
+srvc --> ctrl: stateChanged
+ctrl --> route : HTTP: 200
+route --> FEsrvc: HTTP: 200
+FEsrvc --> comp: HTTP: 200
+comp --> sys: HTTP: 200
+sys --> admin: show success message
+
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate admin
+@enduml

@@ -1,0 +1,274 @@
+openapi: 3.0.0
+info:
+  title: G045
+  version: 1.0.0
+servers:
+  - url: http://{{resource}}
+tags:
+  - name: Building
+  - name: Lift
+  - name: Floor
+  - name: Room
+  - name: Robot
+paths:
+  /api/building/create:
+    post:
+      tags:
+        - Building
+      summary: List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Science Building
+                localizationoncampus: North Campus
+                floors: 5
+                lifts: 2
+                maxCel:
+                  - 5000
+                  - 5200
+                  - 5400
+                  - 5600
+                  - 5800
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/building/update:
+    put:
+      tags:
+        - Building
+      summary: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 655e10a56bf1f38fd2fdc91c
+                name: Building
+                localizationoncampus: North Campus
+                floors: 5
+                lifts: 2
+                maxCel:
+                  - 5000
+                  - 5200
+                  - 5400
+                  - 5600
+                  - 5800
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/building/MinMaxFloors:
+    get:
+      tags:
+        - Building
+      summary: MinMaxFloors
+      parameters:
+        - name: minFloors
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: maxFloors
+          in: query
+          schema:
+            type: integer
+          example: '10'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/lift/create:
+    post:
+      tags:
+        - Lift
+      summary: Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                localization: ' 123'
+                state: '123'
+                building: 655bb75cb79ccf8c4e3ff1b4
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/floor/create:
+    post:
+      tags:
+        - Floor
+      summary: Create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                building: 655d347693ff281a322c29cf
+                name: Sample Floor Name
+                description: A brief description of the floor
+                hall: Main Hall
+                room: 101
+                floorMap: URL_to_floor_map_image_or_document
+                hasElevator: true
+                passages: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/floor/updateFloor:
+    put:
+      tags:
+        - Floor
+      summary: UpdateFloor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 655de061b2a0321d1470bb4e
+                building: 655d347693ff281a322c29cf
+                name: Ola
+                description: A brief aa of the floor
+                hall: a Hall
+                room: 101
+                floorMap: a
+                hasElevator: true
+                passages: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/floor/patchFloorMap:
+    patch:
+      tags:
+        - Floor
+      summary: UpdateFloorMap
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 655de061b2a0321d1470bb4e
+                floorMap: aaaaaaaaaaa
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/floor/patchPassageBuildings:
+    patch:
+      tags:
+        - Floor
+      summary: UpdatePassage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: building123
+                passages:
+                  - id: 655dd8543a484dafd5df8841
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/room/createRoom:
+    post:
+      tags:
+        - Room
+      summary: createRoom
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                floor: 655de061b2a0321d1470bb4e
+                name: Sample Room
+                category: Gabinete
+                description: A sample meeting room for demonstrations
+                dimension:
+                  - 10
+                  - 8
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/robot/createRobot:
+    post:
+      tags:
+        - Robot
+      summary: createRobotType
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                designation: Service Robot
+                brand: TechBot
+                modelRobot: X1000
+                task: 1
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/robot/addRobot:
+    post:
+      tags:
+        - Robot
+      summary: addRobot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                nickname: TechHelper
+                type: 655de2ddb2a0321d1470bb5a
+                serialNumber: ABC123
+                description: A helpful robot for various tasks
+                isActive: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/robot/changeRobotState:
+    post:
+      tags:
+        - Robot
+      summary: ChangeState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 655e10316bf1f38fd2fdc916
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+

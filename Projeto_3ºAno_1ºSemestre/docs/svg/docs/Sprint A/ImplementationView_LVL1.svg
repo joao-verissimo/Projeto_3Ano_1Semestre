@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="411px" preserveAspectRatio="none" style="width:203px;height:411px;" version="1.1" viewBox="0 0 203 411" width="203px" zoomAndPan="magnify"><defs><filter height="300%" id="f1nh8fusvce77w" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><polygon fill="#FFFFFF" filter="url(#f1nh8fusvce77w)" points="28.5,8,144.5,8,151.5,30.2969,158.5,30.2969,158.5,60.5938,28.5,60.5938,28.5,8" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="28.5" x2="151.5" y1="30.2969" y2="30.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="110" x="32.5" y="22.9951">Infrastructure</text><polygon fill="#FFFFFF" filter="url(#f1nh8fusvce77w)" points="12,121,161,121,168,143.2969,175,143.2969,175,173.5938,12,173.5938,12,121" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="12" x2="168" y1="143.2969" y2="143.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="143" x="16" y="135.9951">InterfaceAdapters</text><polygon fill="#FFFFFF" filter="url(#f1nh8fusvce77w)" points="6,234,167,234,174,256.2969,181,256.2969,181,286.5938,6,286.5938,6,234" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="6" x2="174" y1="256.2969" y2="256.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="155" x="10" y="248.9951">ApplicationServices</text><polygon fill="#FFFFFF" filter="url(#f1nh8fusvce77w)" points="54.5,347,118.5,347,125.5,369.2969,132.5,369.2969,132.5,399.5938,54.5,399.5938,54.5,347" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="54.5" x2="125.5" y1="369.2969" y2="369.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="58" x="58.5" y="361.9951">Domain</text><!--MD5=[9513a3cc453ebabd7c766bb35f7e4625]
+link Infrastructure to InterfaceAdapters--><path d="M93.5,61.24 C93.5,77.5 93.5,98.58 93.5,115.71 " fill="none" id="Infrastructure-&gt;InterfaceAdapters" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93.5,120.89,97.5257,111.9015,93.5143,115.89,89.5257,111.8786,93.5,120.89" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[8ae8c2fc7f4712b624819409281d813e]
+link InterfaceAdapters to ApplicationServices--><path d="M93.5,174.24 C93.5,190.5 93.5,211.58 93.5,228.71 " fill="none" id="InterfaceAdapters-&gt;ApplicationServices" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93.5,233.89,97.5257,224.9015,93.5143,228.89,89.5257,224.8786,93.5,233.89" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[cafe62ee2dcfd1ce7937069c4595721c]
+link ApplicationServices to Domain--><path d="M93.5,287.24 C93.5,303.5 93.5,324.58 93.5,341.71 " fill="none" id="ApplicationServices-&gt;Domain" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="93.5,346.89,97.5257,337.9015,93.5143,341.89,89.5257,337.8786,93.5,346.89" style="stroke: #A80036; stroke-width: 1.0;"/><!--MD5=[57c654b4d62b66168a45df3b27b68566]
+@startuml
+
+package "Infrastructure" {
+}
+
+package "InterfaceAdapters" {
+}
+
+package "ApplicationServices" {
+}
+
+package "Domain" {
+}
+
+Infrastructure - -> InterfaceAdapters
+InterfaceAdapters - -> ApplicationServices
+ApplicationServices - -> Domain
+
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 UTC 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.21+9
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: null
+--></g></svg>

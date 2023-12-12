@@ -1,0 +1,36 @@
+<head>
+  <link rel="stylesheet" href="patch-passages.component.css">
+</head>
+
+<section class="main-content">
+  <div class="container">
+    <div class="table-section">
+      <table>
+        <tr>
+          <th><label>Floor:</label></th>
+          <td>
+            <select [(ngModel)]="selectedFloorId">
+              <option *ngFor="let floor of floors" [ngValue]="floor._id">{{ floor.name }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr *ngFor="let passage of floor.passages; let i = index">
+          <th><label for="passage{{i}}">Passage {{i + 1}}:</label></th>
+          <td>
+            <select [(ngModel)]="floor.passages[i]" id="passage{{i}}">
+              <option *ngFor="let passageFloor of floorsWS" [ngValue]="passageFloor._id">{{ passageFloor.name }}</option>
+            </select>
+          </td>
+          <td>
+            <button type="button" (click)="addPassage()">Add Passage</button>
+          </td>
+          <td>
+            <button type="button" (click)="removePassage(i)">Remove Passage</button>
+          </td>
+        </tr>
+      </table>
+      <button class="buttonBack" (click)="goBack()">Back</button>
+      <button (click)="patchFloorPassages()">Edit</button>
+    </div>
+  </div>  
+</section>

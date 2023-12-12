@@ -1,0 +1,40 @@
+@startuml lvl2_addRobot
+actor "User" as user
+participant ":FrontEnd" as frontend
+participant ":RobotController" as controller
+participant ":RobotService" as service
+participant ":RobotTypeController" as typeController
+participant ":RobotTypeService" as typeService
+
+database "Database" as db
+
+user -> frontend: Request to addRobot(data)
+frontend -> controller: HTTP PUT /robots with data
+activate controller
+controller -> service: addRobot(data)
+activate service
+service -> db: Query to check if robot exists
+activate db
+db --> service: Robot exists or Error
+deactivate db
+alt Robot does not exist
+  service -> typeController: Get robot type
+  activate typeController
+  typeController -> typeService: Get robot type
+  activate typeService
+  typeService -> db: Query to check if robot type exists
+  activate db
+  db --> typeService: Type exists or Error
+  deactivate db
+  deactivate typeService
+  typeController --> service: Robot type details or Error
+  deactivate typeController
+  service --> controller: Success adding robot or Error
+else Robot exists
+  service --> controller: Error - Robot already exists
+end
+deactivate service
+controller --> frontend: HTTP 200 OK or Error Message
+deactivate controller
+frontend --> user: Response Message
+@enduml

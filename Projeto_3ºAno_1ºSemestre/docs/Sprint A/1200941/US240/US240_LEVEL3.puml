@@ -1,0 +1,92 @@
+@startuml US240_LEVEL3
+
+participant "User" as U
+participant "IFloorController" as IFC
+participant "FloorController" as FC
+participant "IFloorService" as IFS
+participant "FloorService" as FS
+participant "IFloorRepo" as IFR
+participant "FloorRepo" as FR
+participant "Floor Entity" as FE
+participant "FloorSchema" as FSCH
+participant "FloorMap" as FM
+participant "IFloorPersistence" as IFP
+participant "FloorDocument" as FD
+participant "ConfigFile" as CONF
+
+U -> IFC: createPassageBetweenFloors(floorID, passageData)
+activate IFC
+
+IFC -> FC: createPassageBetweenFloors(floorID, passageData)
+activate FC
+FC -> CONF: Injects Service
+activate CONF
+CONF -> FC
+deactivate CONF
+FC -> IFS: addPassageToFloor(floorID, passageData)
+activate IFS
+
+IFS -> FS: addPassageToFloor(floorID, passageData)
+activate FS
+
+FS -> IFR: findByID(floorID)
+activate IFR
+
+IFR -> FR: findByID(floorID)
+activate FR
+
+FR -> FSCH: query as FilterQuery<IFloorPersistence & Document>
+activate FSCH
+
+FSCH --> FR: return floor entity
+deactivate FSCH
+
+FR --> IFR: return floor entity
+deactivate FR
+
+IFR --> FS: floor entity
+deactivate IFR
+
+FS -> FE: floor.passages.push(passageData)
+activate FE
+
+FE --> FS: updated floor entity
+deactivate FE
+
+FS -> FR: save(updated floor entity)
+activate FR
+
+FR -> FSCH: findOne(query)
+activate FSCH
+
+FSCH -> FD: save rawFloor
+activate FD
+
+FD --> FSCH: return saved floor document
+deactivate FD
+
+FSCH --> FR: return saved floor entity
+deactivate FSCH
+
+FR --> FS: saved floor entity
+deactivate FR
+
+FS -> FM: FloorDTO = FloorMap.toDTO(saved floor entity)
+activate FM
+
+FM --> FS: returns FloorDTO
+deactivate FM
+
+FS --> IFS: return FloorDTO
+deactivate FS
+
+IFS -> FC: Return FloorDTO
+deactivate IFS
+
+FC -> IFC: Send response with status 200 and the FloorDTO
+deactivate FC
+
+IFC -> U: Send response with status 200 and the FloorDTO
+deactivate IFC
+
+@enduml

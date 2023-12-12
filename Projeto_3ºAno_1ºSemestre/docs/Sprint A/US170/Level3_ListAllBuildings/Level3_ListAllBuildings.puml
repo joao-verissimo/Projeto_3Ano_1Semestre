@@ -1,0 +1,26 @@
+@startuml sd
+
+participant "User" as A
+participant "IBuildingController" as IB
+participant "BuildingController" as B
+participant "IBuildingsService" as IC
+participant "BuildingsService" as C
+
+A -> IB: Send request to findAll(req, res, next)
+activate IB
+IB -> B: Handle request to findAll(req, res, next)
+activate B
+B -> C: Handle request to findAll(req, res, next)
+activate C
+C -> IC: Call findAll()
+activate IC
+IC --> C: List of buildings
+deactivate IC
+C --> B: List of buildings
+deactivate C
+B --> IB: List of buildings
+deactivate B
+IB --> A: List of buildings
+deactivate IB
+
+@enduml

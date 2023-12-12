@@ -1,0 +1,41 @@
+<head>
+  <link rel="stylesheet" href="add-robot.component.css">
+</head>
+
+<section class="main-content">
+    <div class="container">
+        <div class="table-section">
+            <table>
+                <tr>
+                    <th><label>Nickname:</label></th>
+                    <td><input [(ngModel)]="robot.nickname" placeholder="Robot Nickname" required></td>
+                </tr>
+                <tr>
+                    <th><label>Robot Type:</label></th>
+                    <td>
+                        <select [(ngModel)]="selectedTypeId">
+                            <option *ngFor="let type of rt" [ngValue]="type._id">{{ type.designation }}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label>Serial Number:</label></th>
+                    <td><input [(ngModel)]="robot.serialNumber" placeholder="Robot Serial Number" required></td>
+                </tr>
+                <tr>
+                    <th><label>Description:</label></th>
+                    <td><input [(ngModel)]="robot.description" placeholder="Robot Description" required></td>
+                </tr>
+                <tr>
+                    <th><label>Is Active:</label></th>
+                    <td><input type="checkbox" [(ngModel)]="robot.isActive"></td>
+                </tr>
+            </table>
+        </div>
+      
+        <div class="button-section">
+            <button class="buttonBack" (click)="goBack()">Back</button>
+            <button (click)="addRobot()">Add</button>
+        </div>
+      </div>      
+</section>

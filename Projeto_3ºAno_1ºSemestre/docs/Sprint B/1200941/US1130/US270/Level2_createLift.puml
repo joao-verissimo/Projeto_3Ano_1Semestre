@@ -1,0 +1,46 @@
+@startuml lvl2_createLift
+
+actor "User" as A
+participant ":FrontEnd" as frontend
+participant ":LiftController" as controller
+participant ":LiftService" as service
+participant ":BuildingService" as buildingService
+participant ":Database" as db
+
+A -> frontend: Access web interface and input lift data
+frontend -> controller: Submit lift data
+activate controller
+
+controller -> service: createLift(data)
+activate service
+
+service -> buildingService: Check if building exists
+activate buildingService
+buildingService -> db: Query for building
+activate db
+db --> buildingService: Building data or null
+deactivate db
+buildingService --> service: Building data or null
+deactivate buildingService
+
+alt Building found
+    service -> db: Save new lift
+    activate db
+    db --> service: Lift saved
+    deactivate db
+    service --> controller: Lift creation success
+else Building not found
+    service --> controller: Lift creation failure (Building not found)
+end
+deactivate service
+
+alt Lift creation success
+    controller --> frontend: Success response with lift details
+else Lift creation failure
+    controller --> frontend: Failure response (e.g., Building not found)
+end
+deactivate controller
+
+frontend -> A: Display creation outcome (success or error)
+
+@enduml

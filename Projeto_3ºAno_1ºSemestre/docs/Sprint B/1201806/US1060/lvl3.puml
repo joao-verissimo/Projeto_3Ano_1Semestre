@@ -1,0 +1,73 @@
+@startuml
+autonumber
+'hide footbox
+actor "User" as user
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_Service" as FEsrvc
+participant ":Routing" as route
+participant ":BuildingController" as ctrl
+participant ":BuildingService" as srvc
+participant ":BuildingRepo" as repo
+participant ":Building" as rt
+
+database "Database" as db
+
+activate user
+ user -> sys: wants to see the list of buildings
+activate sys
+sys -> comp : loadBuildings()
+activate comp
+comp -> FEsrvc : getBuildings()
+activate FEsrvc
+FEsrvc -> route: GET route{}
+activate route
+route -> ctrl: findAll()
+activate ctrl
+ctrl -> srvc: findAll()
+activate srvc
+srvc -> repo: findAll()
+
+
+
+
+alt 
+    activate repo
+    repo -> db: findAll()
+    activate db
+    db --> repo: List of all Buildings
+    deactivate db
+    repo -> srvc: List of all Buildings
+    deactivate repo
+    srvc -> ctrl: List of all Buildings
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> user: show Building List
+else
+    repo --> srvc: Error('Internal Server Error')
+    srvc -> ctrl: Error('Internal Server Error')
+    deactivate srvc
+    ctrl --> route : HTTP: 500
+    deactivate ctrl
+    route --> FEsrvc: HTTP: 500
+    deactivate route
+    FEsrvc --> comp: HTTP: 500
+    deactivate FEsrvc 
+    comp --> sys: HTTP: 500
+    deactivate comp
+    sys --> user: show failure message
+    deactivate sys
+end
+
+
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate user
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+actor "User" as user
+participant ":UpdateBuildingComponentHTML" as ui
+participant "UpdateBuildingComponent" as component
+participant ":BuildingServiceFE" as servicefe
+participant ":BuildingsController" as controller
+participant ":BuildingServiceBE" as service
+
+database "Database" as db
+
+activate user
+user -> ui: Select Building to be updated
+activate ui
+ui -> component: Receive the HTTP PUT/PATCH
+activate component
+component -> servicefe: updateBuilding()
+activate servicefe
+servicefe -> controller: HTTP PATCH/ update
+activate controller
+controller -> service: updateBuilding ()
+activate service
+service -> db: Query update Building 
+alt sucess 
+db --> service: sucess message
+service --> controller: sucess message
+deactivate service
+controller --> servicefe: HTTP 200 OK 
+deactivate controller
+servicefe -> component: Console.log sucess message
+deactivate servicefe
+component -> ui: Sucess Message
+deactivate component
+ui --> user: Sucess Message
+else Error 
+db --> service: error message
+service --> controller: error message
+deactivate service
+controller --> servicefe: HTTP 500
+deactivate controller
+servicefe -> component: Console.log error message
+deactivate servicefe
+component -> ui: error Message
+deactivate component
+ui --> user: error Message
+
+end
+@enduml

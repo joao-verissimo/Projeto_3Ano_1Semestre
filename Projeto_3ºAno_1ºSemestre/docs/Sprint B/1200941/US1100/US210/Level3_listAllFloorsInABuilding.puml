@@ -1,0 +1,93 @@
+@startuml sd
+
+participant "User" as A
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_Service" as FEsrvc
+participant ":Routing" as route
+participant "IFloorController" as IF
+participant "FloorController" as F
+participant "IFloorService" as IG
+participant "FloorService" as G
+participant "IFloorRepo" as IH
+participant "FloorRepo" as H
+participant "Floor Entity" as FE
+participant "ConfigFile" as CONF
+participant "IFloorPersistence" as IJ
+participant "FloorPersistence" as J
+participant "FloorSchema" as K
+participant "BuildingMap" as BM
+
+A -> sys: Accesses web interface
+sys -> comp: Display form to input building ID
+comp -> sys: User inputs buildingID
+sys -> FEsrvc: Submit building ID
+FEsrvc -> route: Request to list floors by building ID
+route -> IF: Forward request (buildingID)
+A -> IF: send request to listFloorsByBuildingID(buildingID)
+activate IF
+
+IF -> F: listFloorsByBuildingID(buildingID)
+activate F
+F -> CONF: Injects Service
+activate CONF
+CONF -> F
+deactivate CONF
+F -> IG: getFloorsByBuilding(buildingID)
+activate IG
+
+IG -> G: findByBuildingID(buildingID)
+activate G
+
+G -> IH: findByBuildingID(buildingID)
+activate IH
+
+IH -> H: findByBuildingID(buildingID)
+activate H
+
+H -> IJ: query as FilterQuery<IFloorPersistence & Document>
+activate IJ
+
+IJ -> J: 
+activate J
+
+J -> IJ:
+deactivate J
+
+IJ -> H:
+deactivate IJ
+
+H -> K: findOne(query)
+activate K
+
+K --> H: return floor entity
+deactivate K
+
+H --> IH: return floor entity
+deactivate H
+
+IH --> G: floor entities
+deactivate IH
+G --> FE: floors: Floor[] = floorsWithBuildingID
+activate FE
+FE --> G: returns floorsWithBuildingID
+deactivate FE
+G --> BM: floorsDTO = floors.map(floor => FloorMap.toDTO(floor))
+activate BM
+BM --> G: returns floorDTO
+deactivate BM
+G --> IG: return floorsDTO
+deactivate G
+
+IG --> F: Return floorsDTO
+deactivate IG
+
+F -> IF: Send response with status 200 and the floorsDTO
+IF -> route: Forward response
+
+route -> FEsrvc: Forward response
+FEsrvc -> comp: Display result (list of floorDTOs)
+comp -> sys: Update view to show floors
+sys -> A: Show floors by building ID to User
+
+@enduml

@@ -1,0 +1,78 @@
+/* Container styles */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  opacity: 0.95;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-content {
+  background-image: url('../../../assets/image.jpg');
+  background-size: cover; 
+  height: calc(100vh - 40px); 
+}
+
+/* Table section styles */
+.table-section table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Select and input styles */
+.table-section select,
+.table-section input {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button section styles */
+.button-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Back button styles */
+.buttonBack {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #42545C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonBack:hover {
+  background-color: #344955;
+}
+
+.buttonBack:active {
+  background-color: #000;
+}
+
+/* Create button styles */
+.button-section button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #42545C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-section button:hover {
+  background-color: #344955;
+}
+
+.button-section button:active {
+  background-color: #000;
+}

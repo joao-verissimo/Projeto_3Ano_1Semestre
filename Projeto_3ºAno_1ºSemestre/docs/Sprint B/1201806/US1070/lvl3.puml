@@ -1,0 +1,76 @@
+@startuml
+autonumber
+'hide footbox
+actor "User" as user
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_Service" as FEsrvc
+participant ":Routing" as route
+participant ":BuildingController" as ctrl
+participant ":BuildingService" as srvc
+participant ":BuildingRepo" as repo
+
+
+database "Database" as db
+
+activate user
+ user -> sys: Select a Building to update
+ sys -> user: Request new Building data
+ user -> sys: Insert the new data
+activate sys
+sys -> comp : updateBuilding()
+activate comp
+comp -> FEsrvc : updateBuildings()
+activate FEsrvc
+FEsrvc -> route: GET route{}
+activate route
+route -> ctrl: HTTP PUT/PATCH
+activate ctrl
+ctrl -> srvc: updateBuilding()
+activate srvc
+srvc -> repo: updateBuilding()
+
+
+
+
+alt sucess
+    activate repo
+    repo -> db: save(Building)
+    activate db
+    db --> repo: sucess
+    deactivate db
+    repo -> srvc: sucess
+    
+    srvc -> ctrl: sucess
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> user: show Sucess Message
+else \tfailure
+    repo --> srvc: Error('Internal Server Error')
+    deactivate repo
+    srvc -> ctrl: Error('Internal Server Error')
+    deactivate srvc
+    ctrl --> route : HTTP: 500
+    deactivate ctrl
+    route --> FEsrvc: HTTP: 500
+    deactivate route
+    FEsrvc --> comp: HTTP: 500
+    deactivate FEsrvc 
+    comp --> sys: HTTP: 500
+    deactivate comp
+    sys --> user: show failure message
+    deactivate sys
+end
+
+
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate user
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+autonumber
+'hide footbox
+actor "User" as user
+
+participant ":System" as sys
+
+activate user
+
+user -> sys: Make the request
+activate sys
+
+alt successful case
+    sys --> user: show List of Buildings
+else
+    sys --> user: show failure message
+end
+deactivate sys
+@enduml

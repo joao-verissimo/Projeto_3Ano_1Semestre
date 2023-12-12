@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="create-building.component.css">
+</head>
+<section class="main-content">
+
+<form (ngSubmit)="createBuilding()">
+    <label for="name">Building Name:</label>
+    <input type="text" [(ngModel)]="buildingData.name" name="name" id="name" placeholder="Building Name" required>
+
+    <label for="localizationoncampus">Localization on Campus:</label>
+    <input type="text" [(ngModel)]="buildingData.localizationoncampus" name="localizationoncampus" id="localizationoncampus" placeholder="Localization on Campus" required>
+
+    <label for="floors">Number of Floors:</label>
+    <input type="number" [(ngModel)]="buildingData.floors" name="floors" id="floors" placeholder="Number of Floors" required>
+
+    <label for="lifts">Number of Lifts:</label>
+    <input type="number" [(ngModel)]="buildingData.lifts" name="lifts" id="lifts" placeholder="Number of Lifts" required>
+
+    <label for="length">Length:</label>
+    <input type="number" [(ngModel)]="buildingData.maxCel[0]" name="length" id="length" placeholder="Length" required>
+
+    <label for="width">Width:</label>
+    <input type="number" [(ngModel)]="buildingData.maxCel[1]" name="width" id="width" placeholder="Width" required>
+    
+    <button type="submit">Create Building</button>
+</form>
+
+</section>

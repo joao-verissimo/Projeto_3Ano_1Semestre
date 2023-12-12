@@ -1,0 +1,19 @@
+@startuml
+
+package "Server1" as S1 {
+    component "[Visualization]" as V
+}
+
+package "Server1" as S2 {
+    component "[Logistic]" as L
+    component "[Planning]" as P
+}
+
+package "Server1" as S3 {
+    component "[Logistic]" as L2
+}
+
+S1 --> S2: http/s
+S2 --> S3: http/s
+
+@enduml

@@ -1,0 +1,62 @@
+/* Building Container */
+.building-container {
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Building Info */
+.building-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Info Item */
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Label styles */
+.label {
+  font-weight: bold;
+  color: #333;
+  min-width: 120px;
+}
+
+/* Value styles */
+.value {
+  color: #555;
+}
+
+/* Button Row */
+.button-row {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center;
+  margin-top: 15px;
+}
+
+/* Button styles */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #42545C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #344955;
+}
+
+button:active {
+  background-color: #000;
+}

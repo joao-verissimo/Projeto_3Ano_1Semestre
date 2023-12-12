@@ -1,0 +1,113 @@
+@startuml lvl3_createBuilding
+
+participant "User" as A
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_Service" as FEsrvc
+participant ":Routing" as route
+participant "IBuildingController" as IB
+participant "BuildingController" as B
+participant "IBuildingsService" as IC
+participant "BuildingsService" as C
+participant "IBuildingsRepo" as ID
+participant "BuildingsRepo" as D
+participant "BuildingsMap" as F
+participant "Building Entity" as E
+participant "ConfigFile" as CONF
+participant "IBuildingPersistence" as IH
+participant "BuildingPersistence" as H
+participant "BuildingSchema" as I
+
+A -> sys: Accesses web interface
+sys -> comp: Display building creation form
+comp -> sys: User inputs building data
+sys -> FEsrvc: Submit building data
+FEsrvc -> route: Request to create building
+route -> IB: Forward request (req, res, next)
+
+A -> IB: send request to createBuilding(req, res, next)
+activate IB
+IB -> B:createBuilding(req, res, next)
+activate B
+B -> CONF : Injects Service
+activate CONF
+
+CONF -> B
+deactivate CONF
+
+B -> IC: createBuilding(req, res, next)
+activate IC
+
+IC -> C: createBuilding(req.body as IBuildingDTO)
+activate C
+
+C -> ID: findByName(buildingDTO.name)
+activate ID
+
+ID -> D: buildingDocument (or null)
+deactivate ID
+activate D
+D --> IH: 
+activate IH
+IH --> H: 
+activate H
+H --> IH: 
+deactivate H
+IH --> D
+deactivate IH
+D --> C: buildingDocument (or null)
+deactivate D
+
+alt building with the same name found
+    C --> B: Return failure Result
+else building creation
+    C -> F: ToDomain(req.body as IBuildingDTO)
+    F -> E:
+    activate E
+    E --> C: buildingOrError
+    deactivate E
+    
+    alt building creation successful
+        C -> ID: save(buildingResult)
+        activate ID
+        ID -> D: save(buildingResult)
+        activate D
+        D -> F: toPersistence(buildingResult)
+        activate F 
+        F --> D : return rawBuilding
+        deactivate F
+        D --> I: create(rawBuilding)
+        activate I
+        I --> D : return buildingDocument
+        deactivate I
+        D --> ID: saved buildingDocument
+        deactivate D
+        ID --> C: saved buildingDocument
+        deactivate ID
+        
+        C -> F: toDTO(buildingResult)
+        activate F
+        F --> C: buildingDTOResult
+        deactivate F
+        C --> IC : buildingDTOResult
+        IC --> B: Return successful Result with DTO
+    else building creation failed
+        C --> IC: Error Result
+        IC --> B: Error Result
+    end
+end
+
+alt BuildingsService returns a failure Result
+    B -> IB: Send response with status 402
+    IB -> route: Send response with status 402
+else BuildingsService returns a successful Result
+    B -> IB: Send response with status 201 and the buildingDTO
+    IB -> route: Send response with status 201 and the buildingDTO
+end
+
+route -> FEsrvc: Forward response
+FEsrvc -> comp: Display result (success or failure)
+comp -> sys: Update view accordingly
+sys -> A: Show final outcome to User
+
+@enduml

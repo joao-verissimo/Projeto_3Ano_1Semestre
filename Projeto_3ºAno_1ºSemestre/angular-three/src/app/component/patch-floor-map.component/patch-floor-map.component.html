@@ -1,0 +1,30 @@
+<head>
+  <link rel="stylesheet" href="patch-floor-map.component.css">
+</head>
+
+<section class="main-content">
+    <div class="container">
+        <div class="table-section">
+            <table>
+                <tr>
+                    <th><label>Floor:</label></th>
+                    <th>
+                        <select [(ngModel)]="selectedFloorId">
+                            <option *ngFor="let floor of floors" [ngValue]="floor._id">{{ floor.name }}</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th><label>Floor Map:</label></th>
+                    <td>
+                        <app-single-file-upload (uploadSuccess)="handleUploadSuccess($event)"></app-single-file-upload>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="button-section">
+            <button class="buttonBack" (click)="goBack()">Back</button>
+            <button (click)="editFloorMap()">Update floor map</button>
+        </div>
+      </div>
+</section>

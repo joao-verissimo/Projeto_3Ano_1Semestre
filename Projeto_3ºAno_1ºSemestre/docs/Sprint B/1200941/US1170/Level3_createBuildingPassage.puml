@@ -1,0 +1,85 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_FloorService" as FEsrvc
+participant ":Routing" as route
+participant ":FloorController" as ctrl
+participant ":FloorService" as srvc
+participant ":FloorRepo" as repo
+participant ":FloorMap" as rtMap
+participant ":FloorSchema" as rtSchema
+
+activate admin
+
+admin -> sys: wants to create floor passages
+activate sys
+sys --> admin: request necessary data()
+admin -> sys : provide all the data
+activate comp
+
+sys -> comp : getFloors()
+activate FEsrvc
+comp -> FEsrvc : listFloors()
+activate route
+FEsrvc -> route: GET route{}
+activate ctrl
+route -> ctrl: listAllFloors()
+activate srvc
+ctrl -> srvc: findAll()
+activate repo
+srvc -> repo: findAll()
+deactivate FEsrvc
+deactivate route
+deactivate ctrl
+deactivate srvc
+deactivate repo
+
+sys -> comp : createFloorPassages()
+activate FEsrvc
+comp -> FEsrvc : createPassages(Object{floor, passages})
+activate route
+FEsrvc -> route: POST route{json}
+activate ctrl
+route -> ctrl: createPassageBuilding(json)
+activate srvc
+ctrl -> srvc: createPassageBuilding(IFloorDTO)
+activate repo
+srvc -> repo: saveNew(floor)
+loop each passage
+    srvc -> repo: saveNew(floor.passages)
+end
+activate rtSchema
+srvc -> repo: save(floor)
+activate rtMap
+repo -> rtMap: toPersistence(floor)
+repo -> rtSchema: create(floor)
+repo --> srvc: floor
+
+alt saved with success
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    ctrl --> route : HTTP: 400
+    route --> FEsrvc: HTTP: 400
+    FEsrvc --> comp: HTTP: 400
+    comp --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+
+deactivate rtSchema
+deactivate rtMap
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate admin
+@enduml

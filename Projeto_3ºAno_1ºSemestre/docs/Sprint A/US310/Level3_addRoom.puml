@@ -1,0 +1,57 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":FrontEnd" as sys
+participant ":Routing" as route
+participant ":RoomController" as ctrl
+participant ":RoomService" as srvc
+participant ":RoomRepo" as repo
+participant ":RoomClass" as room
+participant ":RoomMap" as roomMap
+participant ":RoomSchema" as roomSchema
+
+activate admin
+
+admin -> sys: create a Route
+activate sys
+
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate route
+sys -> route: POST route{id, Building, Floor, name, category, description, dimension}
+activate ctrl
+route -> ctrl: createRoom(request, result, next)
+activate srvc
+ctrl -> srvc: createRoom(IRoomDTO)
+activate repo
+activate room
+srvc -> room: create(roomDto)
+srvc -> repo: save(roomDto)
+activate roomSchema
+repo -> roomSchema: findOne(id)
+repo -> roomSchema: findOne(name)
+repo -> roomSchema: find(buildingId, floorId)
+repo -> repo: doRoomsOverlap(room, tempRoom)
+activate roomMap
+repo -> roomMap: toPersistance(room)
+repo -> roomSchema: create(room)
+repo --> srvc: room
+deactivate roomSchema
+deactivate roomMap
+deactivate room
+deactivate repo
+srvc --> ctrl: result
+
+alt successful case
+    ctrl --> route : HTTP: 201
+    route --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    ctrl --> route : HTTP: 400
+    route --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+deactivate sys
+@enduml

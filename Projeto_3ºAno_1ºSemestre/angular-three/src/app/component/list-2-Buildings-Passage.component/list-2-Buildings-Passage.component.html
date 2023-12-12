@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" href="list-2-Buildings-Passage.component.css">
+</head>
+
+<section class="main-content">
+  <div class="container">
+    <div class="table-section">
+      <table>
+        <tr>
+          <th><label>Building1:</label></th>
+          <td>
+            <select [(ngModel)]="selectedBuildingID1">
+              <option *ngFor="let Building1 of buildings" [ngValue]="selectedBuildingID1">{{ Building1.name }}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th><label>Building2:</label></th>
+          <td>
+            <select [(ngModel)]="selectedBuildingID2">
+              <option *ngFor="let Building2 of buildings" [ngValue]="selectedBuildingID2">{{ Building2.name }}</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <button (click)="ListPassageBetween2Buildings()">List</button>
+    </div>
+  </div>  
+</section>

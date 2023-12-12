@@ -1,0 +1,33 @@
+@startuml lvl2_createPassageBetweenFloors
+
+actor "User" as U
+participant ":FrontEnd" as frontend
+participant ":FloorController" as controller
+participant ":FloorService" as service
+participant ":Database" as db
+
+U -> frontend: Access web interface and input passage data
+frontend -> controller: Submit passage data (floorID, passageData)
+activate controller
+
+controller -> service: addPassageToFloor(floorID, passageData)
+activate service
+
+service -> db: Query for floor by ID and add passage
+activate db
+db --> service: Updated floor entity or error
+deactivate db
+
+service --> controller: Floor update result (success or error)
+deactivate service
+
+alt Floor update success
+    controller --> frontend: Success response with updated Floor data
+else Floor update failure
+    controller --> frontend: Error response
+end
+deactivate controller
+
+frontend -> U: Display update outcome (success or error)
+
+@enduml

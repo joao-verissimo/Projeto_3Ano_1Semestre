@@ -1,0 +1,28 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":System" as sys
+participant ":API RobotType" as robotType
+
+activate admin
+
+admin -> sys: create a robot type
+activate sys
+
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate robotType
+sys -> robotType: POST route{designation, brand, model, task}
+
+alt successful case
+    robotType --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    robotType --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+deactivate robotType
+deactivate sys
+@enduml

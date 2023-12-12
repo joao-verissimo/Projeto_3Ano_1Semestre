@@ -1,0 +1,97 @@
+/* Base styles for form container */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  padding: 20px;
+  opacity: 0.95;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.main-content {
+  background-image: url('../../../assets/image.jpg');
+  background-size: cover; 
+  height: calc(100vh - 40px); 
+}
+/* Styles for form rows */
+.form-row {
+  margin-bottom: 15px;
+}
+
+/* Label styles */
+.form-row label {
+  display: block;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* Input styles */
+.form-row input,
+.form-row select {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Number input specific styles */
+.form-row input[type="number"] {
+  width: calc(100% - 20px);
+}
+
+/* File upload styles */
+.form-row app-single-file-upload {
+  width: calc(100% - 20px);
+}
+
+/* Checkbox styles */
+.form-row input[type="checkbox"] {
+  margin-top: 6px;
+}
+
+/* Form buttons container */
+.button-section {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* Back button styles */
+.buttonBack {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #42545C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttonBack:hover {
+  background-color: #344955;
+}
+
+.buttonBack:active {
+  background-color: #000;
+}
+
+/* Edit button styles */
+form button[type="submit"] {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #42545C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #344955;
+}
+
+form button[type="submit"]:active {
+  background-color: #000;
+}

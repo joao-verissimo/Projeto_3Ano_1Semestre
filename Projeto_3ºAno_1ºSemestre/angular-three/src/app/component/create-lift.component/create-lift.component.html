@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="create-lift.component.css">
+  </head>
+  
+  <form (ngSubmit)="createLift()" #liftForm="ngForm" class="lift-form">
+    <div class="form-row">
+        <label for="localization">Localization:</label>
+        <input type="text" id="localization" [(ngModel)]="liftData.localization" name="localization" required>
+    </div>
+  
+    <div class="form-row">
+        <label for="state">State:</label>
+        <input type="text" id="state" [(ngModel)]="liftData.state" name="state" required>
+    </div>
+  
+    <div class="form-row">
+        <label for="building">Building:</label>
+        <select id="building" [(ngModel)]="liftData.building" name="building" required>
+            <option value="">Select a building</option>
+            <option *ngFor="let building of buildings" [ngValue]="building._id">{{ building.name }}</option>
+        </select>
+    </div>
+  
+    <div class="form-row">
+        <button type="submit" [disabled]="!liftForm.valid">Create Lift</button>
+    </div>
+  </form>
+  

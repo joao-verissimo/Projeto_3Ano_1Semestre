@@ -1,0 +1,88 @@
+@startuml US220_LEVEL3
+
+participant "User" as A
+participant "IBuildingController" as IB
+participant "BuildingController" as B
+participant "IBuildingsService" as IC
+participant "BuildingsService" as C
+participant "IBuildingsRepo" as ID
+participant "BuildingsRepo" as D
+participant "Building Entity" as E
+participant "ConfigFile" as CONF
+participant "IBuildingPersistence" as IH
+participant "BuildingPersistence" as H
+participant "BuildingSchema" as I
+participant "FloorMap" as FM
+participant "ConfigFile" as CONF
+
+
+A -> IB: ListBuildingFloorWithPassageToOtherBuilding(buildingID)
+activate IB
+
+IB -> B: ListBuildingFloorWithPassageToOtherBuilding(buildingID)
+activate B
+B -> CONF: Injects Service
+activate CONF
+CONF -> B
+deactivate CONF
+B -> IC: ListBuildingFloorWithPassageToOtherBuilding(buildingID)
+activate IC
+
+IC -> C: findByDomainID(buildingID)
+activate C
+
+C -> ID: findByDomainID(buildingID)
+activate ID
+
+ID -> D: findByDomainID(buildingID)
+activate D
+
+D -> IH: query as FilterQuery<IBuildingsPersistence & Document>
+activate IH
+
+IH -> H: 
+activate H
+
+H -> IH:
+deactivate H
+
+IH -> D:
+deactivate IH
+
+D -> I: findOne(query)
+activate I
+
+I --> D: return building entity
+deactivate I
+
+D --> ID: return building entity
+deactivate D
+
+ID --> C: building entity
+deactivate ID
+
+C --> E: floorsWithPassages: Floor[] = building.floorOnBuilding.filter(floor => floor.passages && floor.passages.length > 0)
+activate E
+
+E --> C: returns floorsWithPassages
+deactivate E
+
+C --> FM: floorsWithPassagesDTO = floorsWithPassages.map(floor => FloorMap.toDTO(floor))
+activate FM
+
+FM --> C: returns floorsWithPassagesDTO
+deactivate FM
+
+C --> IC: return floorsWithPassagesDTO
+deactivate C
+
+IC --> B: Return floorsWithPassagesDTO
+deactivate IC
+
+B -> IB: Send response with status 200 and the floorsWithPassagesDTO
+deactivate B
+
+IB -> A: Send response with status 200 and the floorsWithPassagesDTO
+deactivate IB
+
+@enduml

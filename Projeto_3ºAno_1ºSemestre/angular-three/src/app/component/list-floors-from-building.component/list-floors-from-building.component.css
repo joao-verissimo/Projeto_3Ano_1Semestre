@@ -1,0 +1,68 @@
+/* Container styles */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table section styles */
+.table-section table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Select styles */
+.table-section select {
+  width: calc(70% - 10px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button styles */
+.table-section button {
+  width: calc(30% - 10px);
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #42545C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.table-section button:hover {
+  background-color: #344955;
+}
+
+.table-section button:active {
+  background-color: #000;
+}
+
+/* Floor list styles */
+.floor-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.floor-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Floor details styles */
+.floor-details {
+  margin-top: 10px;
+}
+
+/* No floors message styles */
+.no-floors {
+  margin-top: 20px;
+  text-align: center;
+}

@@ -1,0 +1,70 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_Service" as FEsrvc
+participant ":Routing" as route
+participant ":RobotController" as ctrl
+participant ":RobotService" as srvc
+participant ":RobotTypeRepo" as repo
+participant ":RobotTypeMap" as rtMap
+participant ":RobotTypeSchema" as rtSchema
+participant ":RobotType" as rt
+
+activate admin
+
+admin -> sys: wants to introduce a robotType
+activate sys
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate comp
+sys -> comp : createRobotType()
+activate FEsrvc
+comp -> FEsrvc : createRobot(robotType)
+activate route
+FEsrvc -> route: POST route{json}
+activate ctrl
+route -> ctrl: createRobotType(json)
+activate srvc
+ctrl -> srvc: createRobotType(IRobotTypeDTO)
+activate repo
+srvc -> repo: findByDesignation(designation)
+activate rt
+srvc -> rt: create()
+deactivate rt
+srvc -> repo: save(robotType)
+activate rtSchema
+repo -> rtSchema: findOne(id)
+activate rtMap
+repo -> rtMap: toPersistance(robotType)
+repo -> rtSchema: create(robotType)
+repo --> srvc: robotType
+deactivate rtSchema
+deactivate rtMap
+deactivate repo
+srvc --> ctrl: result
+deactivate srvc
+
+alt successful case
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    ctrl --> route : HTTP: 400
+    route --> FEsrvc: HTTP: 400
+    FEsrvc --> comp: HTTP: 400
+    comp --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate admin
+@enduml

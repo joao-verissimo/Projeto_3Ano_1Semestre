@@ -1,0 +1,32 @@
+@startuml
+actor "User" as user
+participant ":ListBuildingsComponentHTML" as ui
+participant "ListBuildingsComponent" as component
+participant ":BuildingServiceFE" as servicefe
+participant ":BuildingsController" as controller
+participant ":BuildingServiceBE" as service
+
+database "Database" as db
+
+user -> ui: Request to List Buildings
+activate ui
+ui -> component: Receive the HTTP Request
+activate component
+component -> servicefe: getBuildings()
+activate servicefe
+servicefe -> controller: HTTP GET /buildings/list
+activate controller
+controller -> service: findAll()
+activate service
+service -> db: Query get Building Data 
+db --> service: List of Buildings
+service --> controller: List of Buildings
+deactivate service
+controller --> servicefe: HTTP 200 OK with List of Buildings
+deactivate controller
+servicefe -> component: Console.log Buildings
+deactivate servicefe
+component -> ui: Buildings info
+deactivate component
+ui --> user: Display List of Buildings
+@enduml

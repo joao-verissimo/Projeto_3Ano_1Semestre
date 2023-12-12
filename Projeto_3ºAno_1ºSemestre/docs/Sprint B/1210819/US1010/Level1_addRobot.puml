@@ -1,0 +1,22 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":System" as sys
+
+activate admin
+
+admin -> sys: add a robot
+activate sys
+
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+
+alt successful case
+    sys --> admin: show success message
+else
+    sys --> admin: show failure message
+end
+deactivate sys
+@enduml

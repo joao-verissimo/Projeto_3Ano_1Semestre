@@ -1,0 +1,69 @@
+/* Container styles */
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  opacity: 0.95;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table section styles */
+.table-section table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  background-image: url('../../../assets/image.jpg');
+  background-size: cover; 
+  height: calc(100vh - 40px); 
+}
+
+/* Table headers styles */
+.table-section th {
+  text-align: left;
+}
+
+/* Select and input styles */
+.table-section select,
+.table-section input[type="button"],
+.table-section input[type="submit"],
+.table-section button {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button styles */
+.table-section button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #42545C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.table-section button:hover {
+  background-color: #344955;
+}
+
+.table-section button:active {
+  background-color: #000;
+}
+
+/* Additional button styles */
+.buttonBack {
+  background-color: #ccc;
+  color: #000;
+}
+
+.buttonBack:hover {
+  background-color: #bbb;
+}

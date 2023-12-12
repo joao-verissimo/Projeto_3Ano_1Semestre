@@ -1,0 +1,28 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":System" as sys
+participant ":Floor" as floor
+
+activate admin
+
+admin -> sys: create a Route
+activate sys
+
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate floor
+sys -> floor: PUT route{id, name, description, hall, room, floorMap, hasElevator, Passages}
+
+alt successful case
+    floor --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    floor --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+deactivate floor
+deactivate sys
+@enduml

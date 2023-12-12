@@ -1,0 +1,50 @@
+@startuml
+actor "User" as user
+participant ":CreateFloorComponentHTML" as ui
+participant "CreateFloorComponent" as component
+participant ":FloorServiceFE" as servicefe
+participant ":FloorController" as controller
+participant ":FloorServiceBE" as service
+
+database "Database" as db
+
+activate user
+activate ui
+user -> ui: Create Floor
+ui -> user: Request Floor's Data
+user -> ui: Insert Floor's Data
+
+ui -> component: Receive the HTTP PUT
+activate component
+component -> servicefe: createFloor()
+activate servicefe
+servicefe -> controller: HTTP PUT
+activate controller
+controller -> service: createFloor()
+activate service
+service -> db: Query to save the new Floor
+alt sucess 
+db --> service: sucess message
+service --> controller: sucess message
+deactivate service
+controller --> servicefe: HTTP 200 OK 
+deactivate controller
+servicefe -> component: Console.log sucess message
+deactivate servicefe
+component -> ui: Sucess Message
+deactivate component
+ui --> user: Sucess Message
+else Error 
+db --> service: error message
+service --> controller: error message
+deactivate service
+controller --> servicefe: HTTP 500
+deactivate controller
+servicefe -> component: Console.log error message
+deactivate servicefe
+component -> ui: error Message
+deactivate component
+ui --> user: error Message
+
+end
+@enduml

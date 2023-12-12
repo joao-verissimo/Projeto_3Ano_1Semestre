@@ -1,0 +1,22 @@
+@startuml
+actor "User" as user
+participant ":FrontEnd" as frontend
+participant ":FloorController" as controller
+participant ":FloorService" as service
+database "Database" as db
+
+user -> frontend: HTTP POST /createFloor
+activate frontend
+frontend -> controller: Handle HTTP Request
+activate controller
+controller -> service: Handle Request
+activate service
+service -> db: Create Floor Data
+db --> service: Result
+service --> controller: Result
+deactivate service
+controller --> frontend: Generate HTTP Response
+deactivate controller
+frontend --> user: HTTP Response
+deactivate frontend
+@enduml

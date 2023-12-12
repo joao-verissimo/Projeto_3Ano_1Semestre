@@ -1,0 +1,19 @@
+@startuml
+
+package "Infrastructure" {
+}
+
+package "InterfaceAdapters" {
+}
+
+package "ApplicationServices" {
+}
+
+package "Domain" {
+}
+
+Infrastructure --> InterfaceAdapters
+InterfaceAdapters --> ApplicationServices
+ApplicationServices --> Domain
+
+@enduml

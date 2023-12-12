@@ -1,0 +1,41 @@
+@startuml
+
+package "Infrastructure" {
+    [Routing]
+    [Persistance]
+}
+
+package "InterfaceAdapters" {
+    package "Controllers" {
+        package "I_Controllers"
+        package "Impl_Controllers"
+    }
+    package "Repositories"{
+        package "I_Repositories"
+        package "Impl_Repositories"
+    }
+    
+}
+
+package "ApplicationServices" {
+    package "AppServices" {
+        package "I_AppServices"
+        package "Impl_AppServices"
+    }
+}
+
+package "Domain" {
+    [Aggregates]
+    [ValueObjects]
+    [Services]
+}
+
+"I_Controllers" -> "Impl_Controllers"
+"I_AppServices" -> "Impl_AppServices"
+"I_Repositories" -> "Impl_Repositories"
+
+Infrastructure --> InterfaceAdapters
+InterfaceAdapters --> ApplicationServices
+ApplicationServices --> Domain
+
+@enduml

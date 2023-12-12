@@ -1,0 +1,34 @@
+@startuml
+
+package "Infrastructure" {
+    [Routing]
+    [Persistance]
+}
+
+package "InterfaceAdapters" {
+    [Controllers]
+    [Repositories]
+}
+
+package "ApplicationServices" {
+    [AppServices]
+}
+
+package "Domain" {
+    [Aggregates]
+    [ValueObjects]
+    [Services]
+}
+
+Infrastructure --> InterfaceAdapters
+Persistance --> Repositories
+Repositories --> AppServices
+Routing --> Controllers
+Controllers --> AppServices
+
+InterfaceAdapters --> ApplicationServices
+ApplicationServices --> Domain
+AppServices --> Aggregates
+AppServices --> ValueObjects
+AppServices --> Services
+@enduml

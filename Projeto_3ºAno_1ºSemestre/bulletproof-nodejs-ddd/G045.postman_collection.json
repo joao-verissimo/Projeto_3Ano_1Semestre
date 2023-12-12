@@ -1,0 +1,407 @@
+{
+	"info": {
+		"_postman_id": "e6445bf5-6b23-4437-84f6-fd36b16eab51",
+		"name": "G045",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29714451",
+		"_collection_link": "https://lunar-sunset-619459.postman.co/workspace/Team-Workspace~c6cf8b09-85e4-4e31-8d46-28ba130b2c48/collection/29714451-e6445bf5-6b23-4437-84f6-fd36b16eab51?action=share&source=collection_link&creator=29714451"
+	},
+	"item": [
+		{
+			"name": "Building",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Science Building\",\r\n  \"localizationoncampus\": \"North Campus\",\r\n  \"floors\": 5,\r\n  \"lifts\": 2,\r\n  \"maxCel\": [5000, 5200, 5400, 5600, 5800]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/building/create",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"building",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\":\"655e10a56bf1f38fd2fdc91c\",\r\n  \"name\": \"Building\",\r\n  \"localizationoncampus\": \"North Campus\",\r\n  \"floors\": 5,\r\n  \"lifts\": 2,\r\n  \"maxCel\": [5000, 5200, 5400, 5600, 5800]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/building/update",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"building",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Science Building\",\r\n  \"localizationoncampus\": \"North Campus\",\r\n  \"floors\": 5,\r\n  \"lifts\": 2,\r\n  \"maxCel\": [5000, 5200, 5400, 5600, 5800]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/building/create",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"building",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MinMaxFloors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{Resource}}/api/building/MinMaxFloors?minFloors=1&maxFloors=10",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"building",
+								"MinMaxFloors"
+							],
+							"query": [
+								{
+									"key": "minFloors",
+									"value": "1"
+								},
+								{
+									"key": "maxFloors",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lift",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"localization\": \" 123\",\r\n    \"state\": \"123\",\r\n    \"building\": \"655bb75cb79ccf8c4e3ff1b4\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/lift/create",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"lift",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Floor",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"building\": \"655d347693ff281a322c29cf\",\r\n    \"name\": \"Sample Floor Name\",\r\n    \"description\": \"A brief description of the floor\",\r\n    \"hall\": \"Main Hall\",\r\n    \"room\": 101,\r\n    \"floorMap\": \"URL_to_floor_map_image_or_document\",\r\n    \"hasElevator\": true,\r\n    \"passages\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/floor/create",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"floor",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateFloor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"655de061b2a0321d1470bb4e\",\n    \"building\": \"655d347693ff281a322c29cf\",\n    \"name\": \"Ola\",\n    \"description\": \"A brief aa of the floor\",\n    \"hall\": \"a Hall\",\n    \"room\": 101,\n    \"floorMap\": \"a\",\n    \"hasElevator\": true,\n    \"passages\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/floor/updateFloor",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"floor",
+								"updateFloor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateFloorMap",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"655de061b2a0321d1470bb4e\",\n    \"floorMap\": \"aaaaaaaaaaa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/floor/patchFloorMap",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"floor",
+								"patchFloorMap"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdatePassage",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"building123\",\n  \"passages\": [{\"id\": \"655dd8543a484dafd5df8841\"}]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/floor/patchPassageBuildings",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"floor",
+								"patchPassageBuildings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Room",
+			"item": [
+				{
+					"name": "createRoom",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"floor\": \"655de061b2a0321d1470bb4e\",\n  \"name\": \"Sample Room\",\n  \"category\": \"Gabinete\",\n  \"description\": \"A sample meeting room for demonstrations\",\n  \"dimension\": [10, 8]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/room/createRoom",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"room",
+								"createRoom"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Robot",
+			"item": [
+				{
+					"name": "createRobotType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"designation\": \"Service Robot\",\n  \"brand\": \"TechBot\",\n  \"modelRobot\": \"X1000\",\n  \"task\": 1\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/robot/createRobot",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"robot",
+								"createRobot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addRobot",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nickname\": \"TechHelper\",\n  \"type\": \"655de2ddb2a0321d1470bb5a\",\n  \"serialNumber\": \"ABC123\",\n  \"description\": \"A helpful robot for various tasks\",\n  \"isActive\": true\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/robot/addRobot",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"robot",
+								"addRobot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ChangeState",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"655e10316bf1f38fd2fdc916\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Resource}}/api/robot/changeRobotState",
+							"host": [
+								"{{Resource}}"
+							],
+							"path": [
+								"api",
+								"robot",
+								"changeRobotState"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "Resource",
+			"value": "http://localhost:4000"
+		}
+	]
+}

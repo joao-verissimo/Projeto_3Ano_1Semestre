@@ -1,0 +1,77 @@
+@startuml
+autonumber
+actor "User" as user
+participant ":listPassageBetween2BuildingsComponentHTML" as ui
+participant "listPassageBetween2BuildingsComponent" as component
+
+participant ":BuildingServiceFE" as buildingservicefe
+participant ":FloorServiceFE" as floorservicefe
+participant ":BuildingController" as buildingctrl
+participant ":FloorController" as floorcontroller
+participant ":BuildingServiceBE" as buildingservicebe
+participant ":FloorServiceBE" as floorservicebe
+
+
+
+database "Database" as db
+
+activate user
+ user -> sys: Wants to create a floor
+ sys -> user: Request Floor's data
+ user -> sys: Insert Floor's data
+activate sys
+sys -> comp : createFloor()
+activate comp
+comp -> FEsrvc : createFloor()
+activate FEsrvc
+FEsrvc -> route: GET route{}
+activate route
+route -> ctrl: HTTP PUT
+activate ctrl
+ctrl -> srvc: createFloor()
+activate srvc
+srvc -> repo: createFloor()
+
+
+
+
+alt sucess
+    activate repo
+    repo -> db: save(Floor)
+    activate db
+    db --> repo: sucess
+    deactivate db
+    repo -> srvc: sucess
+    
+    srvc -> ctrl: sucess
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> user: show Sucess Message
+else \tfailure
+    repo --> srvc: Error('Internal Server Error')
+    deactivate repo
+    srvc -> ctrl: Error('Internal Server Error')
+    deactivate srvc
+    ctrl --> route : HTTP: 500
+    deactivate ctrl
+    route --> FEsrvc: HTTP: 500
+    deactivate route
+    FEsrvc --> comp: HTTP: 500
+    deactivate FEsrvc 
+    comp --> sys: HTTP: 500
+    deactivate comp
+    sys --> user: show failure message
+    deactivate sys
+end
+
+
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate user
+@enduml

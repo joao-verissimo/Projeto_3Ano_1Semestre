@@ -1,0 +1,17 @@
+<head>
+  <link rel="stylesheet" href="change-robot-state.component.css">
+</head>
+
+<div class="container">
+  <div class="table-section">
+    <table>
+      <tr>
+        <th><label for="id">Robot Identifier:</label></th>
+        <td><input type="text" id="id" [(ngModel)]="id" name="id"></td>
+      </tr>
+    </table>
+    <button (click)="changeRobotState()">Change</button>
+  </div>
+</div>
+
+<p>{{ finalMessage }}</p>

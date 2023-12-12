@@ -1,0 +1,121 @@
+@startuml LEVEL3_createlift
+
+participant "User" as A
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_Service" as FEsrvc
+participant ":Routing" as route
+participant "ILiftController" as IL
+participant "LiftController" as L
+participant "ILiftService" as IS
+participant "LiftService" as S
+participant "IBuildingService" as IBS  
+participant "BuildingService" as BS    
+participant "IBuildingRepo" as IBR
+participant "BuildingRepo" as BR
+participant "ILiftRepo" as IR
+participant "LiftRepo" as R
+participant "LiftMap" as M
+participant "Lift Entity" as E
+participant "ConfigFile" as CONF
+participant "ILiftPersistence" as IH
+participant "LiftPersistence" as H
+participant "LiftSchema" as I
+
+A -> sys: Accesses web interface
+sys -> comp: Display form to create lift
+comp -> sys: User inputs lift data
+sys -> FEsrvc: Submit lift data
+FEsrvc -> route: Request to create lift
+route -> IL: Forward request (req, res, next)
+A -> IL: send request to createLift(req, res, next)
+activate IL
+
+IL -> L: createLift(req, res, next)
+activate L
+
+L -> CONF: Injects Service
+activate CONF
+
+CONF -> L
+deactivate CONF
+
+L -> IS: createLift(req, res, next)
+activate IS
+
+IS -> S: createLift(req.body as ILiftDTO)
+activate S
+
+S -> IBS: findByDomainId(req.body.buildingId)
+activate IBS
+IBS -> BS: findByDomainId(req.body.buildingId)
+activate BS
+BS -> IBR: findByDomainId(req.body.buildingId)
+activate IBR
+IBR -> BR: findById(req.body.buildingId)
+activate BR
+BR --> IBR: buildingDocument (or null)
+deactivate BR
+IBR --> BS: buildingDocument (or null)
+deactivate IBR
+BS --> IBS: buildingDocument (or null)
+deactivate BS
+IBS --> S: buildingDocument (or null)
+deactivate IBS
+
+alt Building found
+    S -> M: ToDomain(req.body as ILiftDTO)
+    activate M
+    M -> E: .create(ILiftDTO)
+    activate E
+    E --> S: createdLift
+    deactivate E
+    deactivate M
+
+    alt creation successful
+        S -> IR: save(createdLift)
+        activate IR
+        IR -> R: save(createdLift)
+        activate R
+        R -> M: toPersistence(createdLift)
+        activate M
+        M --> R : return rawLift
+        deactivate M
+        R --> I: create(rawLift)
+        activate I
+        I --> R : return liftDocument
+        deactivate I
+        R --> IR: saved liftDocument
+        deactivate R
+        IR --> S: saved liftDocument
+        deactivate IR
+        
+        S -> M: toDTO(createdLift)
+        activate M
+        M --> S: liftDTOResult
+        deactivate M
+        S --> IS : liftDTOResult
+        IS --> L: Return successful Result with DTO
+    else creation failed
+        S --> IS: Error Result
+        IS --> L: Error Result
+    end
+else Building not found
+    S --> IS: Building not found Error
+    IS --> L: Building not found Error
+end
+
+alt LiftService returns a failure Result
+    L -> IL: Send response with status 402
+    IL -> route: Send response with status 402
+else LiftService returns a successful Result
+    L -> IL: Send response with status 201 and the liftDTO
+    IL -> route: Send response with status 201 and the liftDTO
+end
+
+route -> FEsrvc: Forward response
+FEsrvc -> comp: Display result (success or failure)
+comp -> sys: Update view accordingly
+sys -> A: Show final outcome to User
+
+@enduml

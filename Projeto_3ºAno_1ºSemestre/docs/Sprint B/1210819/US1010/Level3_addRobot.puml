@@ -1,0 +1,94 @@
+@startuml
+autonumber
+'hide footbox
+actor "Admin" as admin
+
+participant ":View" as sys
+participant ":FE_Component" as comp
+participant ":FE_Service" as FEsrvc
+participant ":Routing" as route
+participant ":RobotController" as ctrl
+participant ":RobotService" as srvc
+participant ":RobotRepo" as repo
+participant ":RobotTypeRepo" as repoT
+participant ":RobotMap" as rtMap
+participant ":RobotSchema" as rtSchema
+participant ":Robot" as rt
+
+activate admin
+
+admin -> sys: wants to introduce a robot
+activate sys
+sys --> admin: request necessary data()
+admin -> sys : insert all the data
+activate comp
+
+sys -> comp : getRobotType()
+activate FEsrvc
+comp -> FEsrvc : listRobotType()
+activate route
+FEsrvc -> route: GET route{}
+activate ctrl
+route -> ctrl: listAllRobotTypes()
+activate srvc
+ctrl -> srvc: listAllRobotTypes()
+activate repoT
+srvc -> repoT: listAll()
+deactivate FEsrvc
+deactivate route
+deactivate ctrl
+deactivate srvc
+deactivate repoT
+
+sys -> comp : addRobot()
+activate FEsrvc
+comp -> FEsrvc : addRobot(robot)
+activate route
+FEsrvc -> route: POST route{json}
+activate ctrl
+route -> ctrl: addRobot(json)
+activate srvc
+ctrl -> srvc: addRobot(IRobotTypeDTO)
+activate repoT
+srvc -> repoT: findByDomainId(robot.type)
+deactivate repoT
+activate rt
+srvc -> rt: create()
+deactivate rt
+activate repo
+srvc -> repo: save(robot)
+activate rtSchema
+repo -> rtSchema: findOne(nickname)
+repo -> rtSchema: findOne(serialNumber)
+activate rtMap
+
+alt nickname and serialNumber are unique
+    repo -> rtMap: toPersistance(robot)
+    deactivate rtMap
+    repo -> rtSchema: create(robot)
+    deactivate rtSchema
+    repo --> srvc: robot
+    srvc --> ctrl: robot
+    ctrl --> route : HTTP: 201
+    route --> FEsrvc: HTTP: 201
+    FEsrvc --> comp: HTTP: 201
+    comp --> sys: HTTP: 201
+    sys --> admin: show success message
+else
+    repo --> srvc: Error(nickname or serialNumber already exist)
+    srvc --> ctrl: Error(nickname or serialNumber already exist)
+    ctrl --> route : HTTP: 400
+    route --> FEsrvc: HTTP: 400
+    FEsrvc --> comp: HTTP: 400
+    comp --> sys: HTTP: 400
+    sys --> admin: show failure message
+end
+
+deactivate repo
+deactivate ctrl
+deactivate route
+deactivate FEsrvc
+deactivate comp
+deactivate sys
+deactivate admin
+@enduml

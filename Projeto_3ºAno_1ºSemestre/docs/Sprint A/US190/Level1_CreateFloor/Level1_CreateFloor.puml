@@ -1,0 +1,13 @@
+@startuml
+actor "User" as user
+participant ":FrontEnd" as frontend
+participant ":FloorController" as controller
+participant ":FloorService" as service
+
+user -> frontend: Request to create a Floor
+frontend -> controller: Create a Floor
+controller -> service: Create a Floor
+service --> controller: Result
+controller --> frontend: Response
+frontend --> user: Response
+@enduml

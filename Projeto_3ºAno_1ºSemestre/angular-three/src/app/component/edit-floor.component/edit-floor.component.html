@@ -1,0 +1,66 @@
+<head>
+  <link rel="stylesheet" href="edit-floor.component.css">
+</head>
+
+<section class="main-content">
+    <form (ngSubmit)="editFloor()" class="prettier-form">
+        <div class="form-container">
+            <div class="form-row">
+                <label for="selectedFloorId">Floor:</label>
+                <select [(ngModel)]="selectedFloorId" id="selectedFloorId">
+                    <option *ngFor="let floor of floors" [ngValue]="floor._id">{{ floor.name }}</option>
+                </select>
+            </div>
+      
+            <div class="form-row">
+                <label for="floorName">Floor Name:</label>
+                <input [(ngModel)]="floor.name" id="floorName" placeholder="Floor Name" required>
+            </div>
+      
+            <div class="form-row">
+                <label for="building">Building:</label>
+                <select [(ngModel)]="selectedBuildingId" id="building">
+                    <option *ngFor="let building of buildings" [ngValue]="building._id">{{ building.name }}</option>
+                </select>
+            </div>
+      
+            <div class="form-row">
+                <label for="description">Description:</label>
+                <input [(ngModel)]="floor.description" id="description" placeholder="Description" required>
+            </div>
+      
+            <div class="form-row">
+                <label for="hall">Hall:</label>
+                <input [(ngModel)]="floor.hall" id="hall" placeholder="Hall" required>
+            </div>
+      
+            <div class="form-row">
+                <label for="numberOfRooms">Number of rooms:</label>
+                <input type="number" [(ngModel)]="floor.room" id="numberOfRooms" placeholder="Number of rooms" required>
+            </div>
+      
+            <div class="form-row">
+                <label for="floorMap">Floor Map:</label>
+                <app-single-file-upload (uploadSuccess)="handleUploadSuccess($event)"></app-single-file-upload>
+            </div>
+      
+            <div class="form-row">
+                <label for="hasElevator">Has Elevator:</label>
+                <input type="checkbox" [(ngModel)]="floor.hasElevator" id="hasElevator">
+            </div>
+      
+            <div class="form-row" *ngFor="let passage of floor.passages; let i = index">
+                <label for="passage{{i}}">Passage {{i + 1}}:</label>
+                <select [(ngModel)]="floor.passages[i]" id="passage{{i}}">
+                    <option *ngFor="let passageFloor of floorsWS" [ngValue]="passageFloor._id">{{ passageFloor.name }}</option>
+                </select>
+                <button type="button" (click)="addPassage()">Add Passage</button>
+                <button type="button" (click)="removePassage(i)">Remove Passage</button>
+            </div>
+            <div class="button-section">
+                <button class="buttonBack" (click)="goBack()">Back</button>
+                <button type="submit">Edit</button>
+            </div>
+        </div>
+      </form>      
+</section>

@@ -1,0 +1,74 @@
+@startuml sd
+
+participant "User" as A
+participant "IBuildingController" as IB
+participant "BuildingController" as B
+participant "IBuildingsService" as IC
+participant "BuildingsService" as C
+participant "IBuildingsRepo" as ID
+participant "BuildingsRepo" as D
+participant "BuildingsMap" as F
+participant "Building Entity" as E
+participant "ConfigFile" as CONF
+participant "IBuildingPersistence" as IH
+participant "BuildingPersistence" as H
+participant "BuildingSchema" as I
+
+A -> IB: send request to findByFloors(minFloors, maxFloors)
+activate IB
+
+IB -> B: findByFloors(minFloors, maxFloors)
+activate B
+
+B -> CONF: Injects Service
+activate CONF
+CONF -> B
+deactivate CONF
+
+B -> IC: listBuildingsByFloors(minFloors, maxFloors)
+activate IC
+
+IC -> C: listBuildingsByFloors(minFloors, maxFloors)
+activate C
+
+C -> ID: listBuildingsByFloors(minFloors, maxFloors)
+activate ID
+
+ID -> D: findByFloors(minFloors, maxFloors)
+activate D
+
+D -> IH: query = FilterQuery(minFloors, maxFloors)
+activate IH
+IH -> H
+activate H
+H -> IH
+deactivate H
+IH -> D: return query
+deactivate IH
+D -> I: find(query)
+activate I
+I --> D: return filtered buildings
+deactivate I
+D --> ID: return filtered buildings
+deactivate D
+ID --> C: filtered buildings
+deactivate ID
+
+C -> F: toDTOs(filteredBuildings)
+activate F
+F --> C: return list of buildingDTOs
+deactivate F
+
+C --> IC: return list of buildingDTOs
+deactivate C
+
+IC --> B: Return list of buildingDTOs
+deactivate IC
+
+B -> IB: Send response with status 200 and the list of buildingDTOs
+
+IB -> A: Send response with status 200 and the list of buildingDTOs
+deactivate B
+deactivate IB
+
+@enduml

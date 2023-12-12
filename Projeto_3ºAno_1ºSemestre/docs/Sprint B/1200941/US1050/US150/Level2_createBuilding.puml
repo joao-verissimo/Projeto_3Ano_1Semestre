@@ -1,0 +1,40 @@
+@startuml lvl2_createBuilding
+
+actor "User" as A
+participant ":FrontEnd" as frontend
+participant ":BuildingController" as controller
+participant ":BuildingService" as service
+participant ":Database" as db
+
+A -> frontend: Access building creation form
+frontend -> controller: Submit building data
+activate controller
+controller -> service: createBuilding(data)
+activate service
+
+service -> db: Check if building exists
+activate db
+db --> service: Building exists or null
+deactivate db
+
+alt Building does not exist
+    service -> db: Save new building
+    activate db
+    db --> service: Building saved
+    deactivate db
+    service --> controller: Building creation success
+else Building exists
+    service --> controller: Building creation failure
+end
+deactivate service
+
+alt Building creation success
+    controller --> frontend: Success response with building details
+else Building creation failure
+    controller --> frontend: Failure response
+end
+deactivate controller
+
+frontend -> A: Display creation outcome (success or error)
+
+@enduml

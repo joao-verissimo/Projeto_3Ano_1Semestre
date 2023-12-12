@@ -1,0 +1,33 @@
+@startuml lvl2_findByFloors
+
+actor "User" as A
+participant ":FrontEnd" as frontend
+participant ":BuildingController" as controller
+participant ":BuildingService" as service
+participant ":Database" as db
+
+A -> frontend: Access web interface and input floor range
+frontend -> controller: Submit floor range (minFloors, maxFloors)
+activate controller
+
+controller -> service: listBuildingsByFloors(minFloors, maxFloors)
+activate service
+
+service -> db: Query for buildings with specified floor range
+activate db
+db --> service: List of filtered buildings
+deactivate db
+
+service --> controller: List of buildingDTOs or error
+deactivate service
+
+alt List returned successfully
+    controller --> frontend: Success response with list of buildingDTOs
+else Error in fetching list
+    controller --> frontend: Error response
+end
+deactivate controller
+
+frontend -> A: Display buildings or error message
+
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+actor "User" as user
+participant ":FrontEnd" as frontend
+participant ":BuildingsController" as controller
+participant ":BuildingService" as service
+database "Database" as db
+
+user -> frontend: Request to findAll()
+frontend -> controller: HTTP GET /buildings
+activate controller
+controller -> service: findAll()
+activate service
+service -> db: Query to fetch building names
+db --> service: List of Building Names
+service --> controller: List of Building Names
+deactivate service
+controller --> frontend: HTTP 200 OK with List of Building Names
+deactivate controller
+frontend --> user: List of Building Names
+@enduml
